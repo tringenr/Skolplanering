@@ -34,6 +34,7 @@ function applyAccents(){
   r.setProperty("--gustav",g.c);["--g1","--g2","--g3","--g4"].forEach((v,i)=>r.setProperty(v,g.ramp[i]));
   r.setProperty("--syno",sy.c);["--s1","--s2","--s3","--s4"].forEach((v,i)=>r.setProperty(v,sy.ramp[i]));
 }
+const teachOpen={};
 const TH=Object.assign({count:[2,4,7],effort:[3,6,10]},PREFS.th||{});
 function renderSettings(){
   const el=document.getElementById("settings");if(!el)return;
@@ -61,16 +62,22 @@ function renderSettings(){
   `<h2>Trösklar för veckobelastning</h2><div class="card">${th("count","Antal saker","saker")}${th("effort","Arbetsinsats","insats")}
    <button class="rst" id="threset">Återställ standardvärden</button></div>
   <h2>Lärare och kontakt</h2>`+["Gustav","Syno"].map(k=>{
+    const open_=!!teachOpen[k];
     const rows=Object.entries(D[k].teachers).filter(([su,t])=>t).map(([su,t])=>{
       const em=(typeof EMAILS!=="undefined")?EMAILS[t]:null;
       return `<p style="margin:.35rem 0;font-size:.88rem;line-height:1.45">${su}: <b style="font-weight:600">${t}</b>${em?`<br><a href="mailto:${em}" style="color:var(--accent);text-decoration:none;font-size:.85rem">✉ ${em}</a>`:""}</p>`;
     }).join("");
-    const ment=(typeof MENTORS!=="undefined"&&MENTORS[k])?`<p style="margin:.5rem 0 .1rem;font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Mentorer</p>`+MENTORS[k].map(m=>`<p style="margin:.25rem 0;font-size:.88rem"><b style="font-weight:600">${m[0]}</b><br><a href="mailto:${m[1]}" style="color:var(--accent);text-decoration:none;font-size:.85rem">✉ ${m[1]}</a></p>`).join(""):"";
-    return `<div class="card" style="margin-bottom:.6rem"><p style="margin:0 0 .3rem;font-weight:600"><span class="dot" style="background:${D[k].col}"></span>${DN(k)}</p>${ment}<p style="margin:.5rem 0 .1rem;font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Ämneslärare</p>${rows}</div>`;
+    const ment=(typeof MENTORS!=="undefined"&&MENTORS[k])?MENTORS[k].map(m=>`<p style="margin:.25rem 0;font-size:.88rem"><b style="font-weight:600">${m[0]}</b><br><a href="mailto:${m[1]}" style="color:var(--accent);text-decoration:none;font-size:.85rem">✉ ${m[1]}</a></p>`).join(""):"";
+    return `<div class="card" style="margin-bottom:.6rem"><p style="margin:0 0 .3rem;font-weight:600"><span class="dot" style="background:${D[k].col}"></span>${DN(k)}</p>
+    <p style="margin:.5rem 0 .1rem;font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Mentorer</p>${ment}
+    <button class="teachtoggle" data-k="${k}" aria-expanded="${open_}" style="display:flex;align-items:center;gap:.4rem;background:none;border:none;cursor:pointer;padding:.55rem 0 .1rem;color:var(--accent);font-size:.85rem;font-family:inherit;font-weight:600">
+      <span style="display:inline-block;transition:transform .15s;transform:rotate(${open_?90:0}deg)">›</span>${open_?"Dölj ämneslärare":"Visa alla ämneslärare"}</button>
+    ${open_?`<div style="margin-top:.2rem">${rows}</div>`:""}</div>`;
   }).join("")+`
   <h2>Källor och synk</h2>
   <div class="card" style="margin-bottom:.6rem">${["Gustav","Syno"].map(k=>`<p style="margin:.2rem 0;font-size:.85rem"><span class="dot" style="background:${D[k].col}"></span><b>${DN(k)}</b> — ${docsN(k)} planeringsdokument från lärarna · Google-kalender kopplad</p>`).join("")}
    <p class="hint" style="margin-top:.5rem">Datat uppdateras automatiskt varje natt från lärarnas dokument och barnens kalendrar.</p></div>`;
+  el.querySelectorAll(".teachtoggle").forEach(b=>b.onclick=()=>{teachOpen[b.dataset.k]=!teachOpen[b.dataset.k];renderSettings()});
   el.querySelectorAll(".nameinp").forEach(i=>i.onchange=()=>{NAMES[i.dataset.k]=i.value.trim()||i.dataset.k;PREFS.names=NAMES;saveP();syncNames();render()});
   el.querySelectorAll(".swatch").forEach(b=>b.onclick=()=>{ACCENTS[b.dataset.k]=b.dataset.p;PREFS.accents=ACCENTS;saveP();applyAccents();render()});
   el.querySelectorAll(".thinp").forEach(i=>i.onchange=()=>{const v=Math.max(1,+i.value||1);TH[i.dataset.m][+i.dataset.i]=v;PREFS.th=TH;saveP();render()});
