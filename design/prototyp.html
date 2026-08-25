@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @keyframes wtfstripe { from { background-position: 0 0; } to { background-position: 28px 28px; } }
+    .wtf-pattern { background-image: repeating-linear-gradient(135deg, rgba(255,255,255,.35) 0 6px, transparent 6px 14px); animation: wtfstripe 2.2s linear infinite; }
+    .sheet-backdrop { animation: fadein .18s ease; }
+    @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+    .sheet-panel { animation: slideup .22s cubic-bezier(.2,.8,.3,1); }
+    @keyframes slideup { from { transform: translateY(24px); opacity: .5; } to { transform: translateY(0); opacity: 1; } }
+    ::-webkit-scrollbar { width: 0; height: 0; }
+  </style>
+</helmet>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="390px,844px" dark="{{ isDark }}">
+  <div style="{{ appStyle }}">
+
+    <div style="padding:64px 20px 4px;flex:none;">
+      <div style="font:700 25px/1.1 var(--font-heading);color:var(--color-text);letter-spacing:.06em;text-transform:uppercase;">Skolplanering</div>
+      <div style="font:400 14px var(--font-body);color:var(--color-neutral-700);margin-top:4px;">{{ subtitle }}</div>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px;">
+        <div style="display:flex;gap:8px;">
+          <sc-for list="{{ childTabs }}" as="ct" hint-placeholder-count="3">
+            <button style="{{ ct.style }}" onClick="{{ ct.onClick }}">{{ ct.label }}</button>
+          </sc-for>
+        </div>
+        <button style="{{ themeToggleStyle }}" onClick="{{ toggleTheme }}">{{ themeToggleIcon }}</button>
+      </div>
+    </div>
+
+    <div style="flex:1;overflow-y:auto;padding:14px 20px 100px;">
+
+      <sc-if value="{{ tab === 'home' }}" hint-placeholder-val="{{ true }}">
+        <div>
+          <sc-for list="{{ termCards }}" as="tc" hint-placeholder-count="1">
+            <div style="background:var(--color-bg);border:1px solid var(--color-neutral-200);border-radius:var(--radius-lg);padding:16px;margin-bottom:14px;box-shadow:var(--shadow-sm);">
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <div style="display:flex;align-items:center;gap:8px;font:600 15px var(--font-body);color:var(--color-text);">
+                  <span style="{{ tc.dotStyle }}"></span>{{ tc.name }} · {{ tc.className }}
+                </div>
+                <div style="font:400 12px var(--font-body);color:var(--color-neutral-700);">{{ tc.progress }}</div>
+              </div>
+              <div style="position:relative;margin-top:16px;">
+                <div style="display:flex;justify-content:space-between;font:500 10px var(--font-body);color:var(--color-neutral-600);padding:0 6px;margin-bottom:6px;">
+                  <span>höstlov</span><span>jullov</span><span>sportlov</span><span>slut</span>
+                </div>
+                <div style="height:34px;border:1.5px solid var(--color-neutral-300);border-radius:999px;position:relative;overflow:hidden;background:var(--color-neutral-100);">
+                  <div style="{{ tc.fillStyle }}"></div>
+                  <div style="position:absolute;left:24%;top:0;bottom:0;width:1px;background:var(--color-neutral-300);"></div>
+                  <div style="position:absolute;left:48%;top:0;bottom:0;width:1px;background:var(--color-neutral-300);"></div>
+                  <div style="position:absolute;left:72%;top:0;bottom:0;width:1px;background:var(--color-neutral-300);"></div>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+
+          <sc-if value="{{ nextTask }}" hint-placeholder-val="{{ false }}">
+            <button style="{{ nextTaskCardStyle }}" style-hover="{{ nextTaskCardHoverStyle }}" onClick="{{ nextTaskOnClick }}">
+              <span style="{{ nextTaskBadgeStyle }}">{{ nextTaskBadgeLabel }}</span>
+              <div style="font:700 21px var(--font-heading);color:var(--color-text);margin-bottom:8px;padding-right:70px;">{{ nextTaskTitle }}</div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
+                <span style="font:500 13px var(--font-body);color:var(--color-neutral-600);">{{ nextTaskDateLabel }}</span>
+                <span style="{{ nextTaskCountdownStyle }}">{{ nextTaskCountdownLabel }}</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;font:500 12.5px var(--font-body);color:var(--color-neutral-700);margin-bottom:8px;">
+                <span style="{{ nextTaskDotStyle }}"></span>{{ nextTaskChildLine }}
+              </div>
+              <div style="font:600 13.5px var(--font-body);color:var(--color-text);margin-bottom:4px;">{{ nextTaskSubtitle }}</div>
+              <div style="font:400 13px/1.5 var(--font-body);color:var(--color-neutral-600);">{{ nextTaskDesc }}</div>
+              <span style="{{ nextTaskChevronStyle }}">›</span>
+            </button>
+          </sc-if>
+
+          <div style="font:600 18px var(--font-heading);color:var(--color-text);margin:18px 0 10px;">Veckorna</div>
+          <div style="background:var(--color-bg);border:1px solid var(--color-neutral-200);border-radius:var(--radius-lg);padding:14px;box-shadow:var(--shadow-sm);">
+            <div style="display:grid;grid-template-columns:repeat(9,1fr);gap:5px;">
+              <sc-for list="{{ weekPills }}" as="wp" hint-placeholder-count="43">
+                <button style="{{ wp.style }}" onClick="{{ wp.onClick }}">{{ wp.label }}</button>
+              </sc-for>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;">
+              <sc-for list="{{ legendLevels }}" as="lv" hint-placeholder-count="5">
+                <div style="display:flex;align-items:center;gap:5px;font:500 10.5px var(--font-body);color:var(--color-neutral-700);">
+                  <span style="{{ lv.swatch }}"></span>{{ lv.label }}
+                </div>
+              </sc-for>
+            </div>
+            <div style="font:400 11.5px/1.5 var(--font-body);color:var(--color-neutral-600);margin-top:10px;">
+              Räknar arbetsinsats, där varje uppgifts vikt fördelas över arbetsperioden — ett prov tynger även dagarna före. Klicka på en vecka för detaljer.
+            </div>
+          </div>
+
+          <div style="display:flex;gap:8px;margin-top:12px;">
+            <sc-for list="{{ metricTabs }}" as="mt" hint-placeholder-count="2">
+              <button style="{{ mt.style }}" onClick="{{ mt.onClick }}">{{ mt.label }}</button>
+            </sc-for>
+          </div>
+
+          <div style="font:600 18px var(--font-heading);color:var(--color-text);margin:22px 0 10px;">{{ rangeTitle }}</div>
+          <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;">
+            <sc-for list="{{ rangeTabs }}" as="rt" hint-placeholder-count="5">
+              <button style="{{ rt.style }}" onClick="{{ rt.onClick }}">{{ rt.label }}</button>
+            </sc-for>
+          </div>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin:12px 0;">
+            <sc-for list="{{ typeLegend }}" as="tl" hint-placeholder-count="7">
+              <div style="display:flex;align-items:center;gap:5px;font:500 10.5px var(--font-body);color:var(--color-neutral-700);">
+                <span style="{{ tl.swatch }}"></span>{{ tl.label }}
+              </div>
+            </sc-for>
+          </div>
+
+          <sc-for list="{{ weekBlocks }}" as="wb" hint-placeholder-count="2">
+            <div style="margin-bottom:18px;">
+              <div style="font:600 13px var(--font-body);color:var(--color-neutral-700);margin-bottom:8px;">{{ wb.label }}</div>
+              <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;">
+                <sc-for list="{{ wb.days }}" as="d" hint-placeholder-count="7">
+                  <div style="{{ d.cardStyle }}">
+                    <div style="font:600 12px var(--font-body);color:var(--color-neutral-800);">{{ d.dow }}</div>
+                    <div style="font:600 14px var(--font-body);color:var(--color-text);margin-bottom:4px;">{{ d.dateLabel }}</div>
+                    <sc-for list="{{ d.tasks }}" as="t" hint-placeholder-count="1">
+                      <button style="{{ t.chipStyle }}" onClick="{{ t.onClick }}"><span style="{{ t.chipDotStyle }}"></span>{{ t.chipLabel }}</button>
+                    </sc-for>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+
+          <div style="font:400 12px/1.5 var(--font-body);color:var(--color-neutral-600);padding:6px 2px 20px;">
+            Klicka på en uppgift för material, källor och vikt. G eller S visar vilket barn den gäller.
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ tab === 'calendar' }}" hint-placeholder-val="{{ false }}">
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+            <button style="{{ monthNavStyle }}" onClick="{{ prevMonth }}">‹</button>
+            <div style="font:600 17px var(--font-heading);color:var(--color-text);">{{ monthLabel }}</div>
+            <button style="{{ monthNavStyle }}" onClick="{{ nextMonth }}">›</button>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;font:600 10.5px var(--font-body);color:var(--color-neutral-600);text-align:center;margin-bottom:6px;">
+            <div>M</div><div>T</div><div>O</div><div>T</div><div>F</div><div>L</div><div>S</div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;">
+            <sc-for list="{{ monthCells }}" as="mc" hint-placeholder-count="35">
+              <button style="{{ mc.style }}" onClick="{{ mc.onClick }}">
+                <span>{{ mc.dateLabel }}</span>
+                <div style="display:flex;gap:2px;justify-content:center;margin-top:2px;">
+                  <sc-for list="{{ mc.dots }}" as="dt" hint-placeholder-count="2">
+                    <span style="{{ dt.style }}"></span>
+                  </sc-for>
+                </div>
+              </button>
+            </sc-for>
+          </div>
+
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ tab === 'settings' }}" hint-placeholder-val="{{ false }}">
+        <div>
+          <div style="font:600 18px var(--font-heading);color:var(--color-text);margin:4px 0 12px;">Barn</div>
+          <sc-for list="{{ settingsKids }}" as="sk" hint-placeholder-count="2">
+            <div style="background:var(--color-neutral-100);border:1px solid var(--color-neutral-200);border-radius:var(--radius-lg);margin-bottom:10px;padding:14px 16px;">
+              <div style="display:flex;align-items:center;gap:8px;font:600 14px var(--font-body);color:var(--color-text);">
+                <span style="{{ sk.dotStyle }}"></span>{{ sk.name }} · {{ sk.className }}
+              </div>
+              <div style="font:400 12px var(--font-body);color:var(--color-neutral-600);margin-top:4px;">Läsåret 2026/27</div>
+            </div>
+          </sc-for>
+
+          <div style="font:600 18px var(--font-heading);color:var(--color-text);margin:20px 0 12px;">Källa</div>
+          <div style="background:var(--color-neutral-100);border:1px solid var(--color-neutral-200);border-radius:var(--radius-lg);padding:14px 16px;margin-bottom:20px;">
+            <div style="font:600 14px var(--font-body);color:var(--color-text);">Skolans kalender</div>
+            <div style="font:400 12px var(--font-body);color:var(--color-neutral-600);margin:4px 0 10px;">Kopplad till Lexby skolas schema · synkad idag</div>
+            <button style="padding:9px 16px;border-radius:10px;border:1.5px solid var(--color-neutral-300);background:transparent;color:var(--color-text);font:600 13px var(--font-body);cursor:pointer;">Synka nu</button>
+          </div>
+
+          <div style="font:600 18px var(--font-heading);color:var(--color-text);margin:0 0 12px;">Gör det till ditt eget</div>
+          <div style="background:var(--color-neutral-100);border:1px solid var(--color-neutral-200);border-radius:var(--radius-lg);padding:14px 16px;margin-bottom:20px;">
+            <div style="font:400 12.5px var(--font-body);color:var(--color-neutral-600);margin-bottom:10px;">Färgtema för Gustavs vecko-highlight</div>
+            <div style="display:flex;gap:10px;">
+              <sc-for list="{{ themeSwatches }}" as="ts" hint-placeholder-count="4">
+                <button style="{{ ts.style }}" onClick="{{ ts.onClick }}"></button>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="font:600 18px var(--font-heading);color:var(--color-text);margin:0 0 12px;">Trösklar för arbetsinsats</div>
+          <div style="background:var(--color-neutral-100);border:1px solid var(--color-neutral-200);border-radius:var(--radius-lg);padding:14px 16px;margin-bottom:30px;">
+            <sc-for list="{{ thresholdRows }}" as="th" hint-placeholder-count="4">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--color-neutral-200);">
+                <div style="display:flex;align-items:center;gap:6px;font:500 13px var(--font-body);color:var(--color-text);">{{ th.emoji }} {{ th.label }}</div>
+                <sc-if value="{{ th.fixed }}" hint-placeholder-val="{{ false }}">
+                  <div style="font:600 13px var(--font-body);color:var(--color-neutral-700);">{{ th.fixed }}</div>
+                </sc-if>
+                <sc-if value="{{ th.key }}" hint-placeholder-val="{{ false }}">
+                  <input type="number" value="{{ th.value }}" onChange="{{ th.onChange }}" style="width:56px;padding:6px 8px;border-radius:8px;border:1.5px solid var(--color-neutral-300);background:var(--color-bg);color:var(--color-text);font:600 13px var(--font-body);text-align:center;" />
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+
+    <div style="position:absolute;left:0;right:0;bottom:0;display:flex;background:var(--color-bg);border-top:1px solid var(--color-neutral-200);padding:8px 12px calc(env(safe-area-inset-bottom,0px) + 8px);">
+      <sc-for list="{{ tabBar }}" as="tb" hint-placeholder-count="3">
+        <button style="{{ tb.style }}" onClick="{{ tb.onClick }}">
+          <div style="font-size:19px;line-height:1;">{{ tb.icon }}</div>
+          <div style="font:600 10.5px var(--font-body);margin-top:3px;">{{ tb.label }}</div>
+        </button>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ taskSheet }}" hint-placeholder-val="{{ false }}">
+      <div style="{{ sheetBackdropStyle }}" onClick="{{ closeSheets }}">
+        <div style="{{ sheetPanelStyle }}" onClick="{{ stopProp }}">
+          <div style="width:36px;height:4px;background:var(--color-neutral-300);border-radius:99px;margin:0 auto 14px;"></div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <span style="{{ taskSheetTypeSwatch }}"></span>
+            <span style="font:600 11px var(--font-body);color:var(--color-neutral-600);text-transform:uppercase;letter-spacing:.03em;">{{ taskSheetTypeLabel }}</span>
+          </div>
+          <div style="font:600 20px var(--font-heading);color:var(--color-text);margin-bottom:4px;">{{ taskSheetTitle }}</div>
+          <div style="font:500 13px var(--font-body);color:var(--color-neutral-600);margin-bottom:16px;">{{ taskSheetChildLine }}</div>
+
+          <div style="display:flex;gap:10px;margin-bottom:16px;">
+            <div style="flex:1;background:var(--color-neutral-100);border-radius:var(--radius-lg);padding:10px 12px;">
+              <div style="font:500 10.5px var(--font-body);color:var(--color-neutral-600);">Arbetsperiod</div>
+              <div style="font:600 13px var(--font-body);color:var(--color-text);margin-top:2px;">{{ taskSheetPeriod }}</div>
+            </div>
+            <div style="flex:1;background:var(--color-neutral-100);border-radius:var(--radius-lg);padding:10px 12px;">
+              <div style="font:500 10.5px var(--font-body);color:var(--color-neutral-600);">Vikt</div>
+              <div style="display:flex;align-items:center;gap:8px;margin-top:2px;">
+                <button style="{{ weightMinusStyle }}" onClick="{{ decWeight }}">–</button>
+                <span style="font:600 14px var(--font-body);color:var(--color-text);min-width:16px;text-align:center;">{{ taskSheetWeight }}</span>
+                <button style="{{ weightPlusStyle }}" onClick="{{ incWeight }}">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div style="font:500 10.5px var(--font-body);color:var(--color-neutral-600);margin-bottom:4px;">Material</div>
+          <div style="font:400 13.5px/1.5 var(--font-body);color:var(--color-text);margin-bottom:14px;">{{ taskSheetDesc }}</div>
+
+          <div style="font:500 10.5px var(--font-body);color:var(--color-neutral-600);margin-bottom:6px;">Källor</div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:20px;">
+            <sc-for list="{{ taskSheetLinks }}" as="lk" hint-placeholder-count="1">
+              <div style="font:500 13px var(--font-body);color:var(--color-accent-700);">🔗 {{ lk.label }}</div>
+            </sc-for>
+          </div>
+
+          <button style="{{ doneButtonStyle }}" onClick="{{ toggleDone }}">{{ doneButtonLabel }}</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ weekSheet }}" hint-placeholder-val="{{ false }}">
+      <div style="{{ sheetBackdropStyle }}" onClick="{{ closeSheets }}">
+        <div style="{{ sheetPanelStyle }}" onClick="{{ stopProp }}">
+          <div style="width:36px;height:4px;background:var(--color-neutral-300);border-radius:99px;margin:0 auto 14px;"></div>
+          <div style="font:600 20px var(--font-heading);color:var(--color-text);margin-bottom:4px;">Vecka {{ weekSheetNumber }}</div>
+          <div style="font:400 13px var(--font-body);color:var(--color-neutral-600);margin-bottom:16px;">{{ weekSheetDateRange }}</div>
+          <sc-for list="{{ weekSheetKidRows }}" as="kr" hint-placeholder-count="2">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--color-neutral-200);">
+              <div style="display:flex;align-items:center;gap:8px;font:600 13.5px var(--font-body);color:var(--color-text);">
+                <span style="{{ kr.dotStyle }}"></span>{{ kr.name }}
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span style="{{ kr.badgeStyle }}">{{ kr.badgeLabel }}</span>
+              </div>
+            </div>
+          </sc-for>
+          <div style="font:400 12.5px/1.5 var(--font-body);color:var(--color-neutral-600);margin-top:14px;">{{ weekSheetNote }}</div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ daySheet }}" hint-placeholder-val="{{ false }}">
+      <div style="{{ sheetBackdropStyle }}" onClick="{{ closeSheets }}">
+        <div style="{{ sheetPanelStyle }}" onClick="{{ stopProp }}">
+          <div style="width:36px;height:4px;background:var(--color-neutral-300);border-radius:99px;margin:0 auto 14px;"></div>
+          <div style="font:600 20px var(--font-heading);color:var(--color-text);margin-bottom:14px;">{{ daySheetLabel }}</div>
+          <sc-for list="{{ daySheetTasks }}" as="t" hint-placeholder-count="2">
+            <button style="{{ t.rowStyle }}" onClick="{{ t.onClick }}">{{ t.rowLabel }}</button>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+  </div>
+</x-import>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+const WEEK_NUMS = [34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
+// deterministic level patterns 0-4 (tomt..WTF) for Gustav (G) and Syno (S)
+const G_LEVELS = [0,1,2,3,2,1,4,3,2,1,0,2,3,4,1,0,2,3,1,0,0,2,3,4,3,2,1,0,2,3,4,3,2,1,0,1,2,3,2,1,0,1,2];
+const S_LEVELS = [0,1,1,2,3,2,1,2,3,4,1,0,1,2,3,4,2,1,0,0,0,1,2,3,4,3,2,1,1,2,3,4,3,2,1,0,1,2,2,1,0,1,1];
+const LEVEL_LABELS = ['tomt','Amaze!','lagom','intensivt','WTF?'];
+const DOW = ['mån','tis','ons','tors','fre','lör','sön'];
+const MONTHS = ['augusti','september','oktober','november','december','januari','februari','mars','april','maj','juni'];
+// school-year start: 2026-08-24 (monday of week 35 per sketch actually week 34 starts earlier)
+const YEAR_START = new Date(2026,7,17); // monday of week 34
+
+function weekStartDate(idx){ const d = new Date(YEAR_START); d.setDate(d.getDate() + idx*7); return d; }
+function fmtDate(d){ return d.getDate() + ' ' + ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'][d.getMonth()]; }
+function fmtDateFull(d){ return DOW[(d.getDay()+6)%7] + ' ' + d.getDate() + ' ' + ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'][d.getMonth()]; }
+function dateKey(d){ return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
+
+const TYPE_META = {
+  prov: { label:'prov', dot:9 },
+  nationellt: { label:'nationellt prov', dot:10 },
+  muntligt: { label:'muntligt', dot:7 },
+  inlamning: { label:'inlämning', dot:7 },
+  laxa: { label:'läxa/förhör', dot:5 },
+  lov: { label:'lov', dot:6 },
+  ovrigt: { label:'övrigt', dot:5 },
+};
+const TYPE_COLORS = {
+  dark: {
+    prov:{c:'#e05252',t:'#fff'}, nationellt:{c:'#9b6bea',t:'#fff'}, muntligt:{c:'#4c8fe0',t:'#fff'},
+    inlamning:{c:'#e0a13c',t:'#1a1a1a'}, laxa:{c:'#d9c23c',t:'#1a1a1a'}, lov:{c:'#5fae6f',t:'#fff'}, ovrigt:{c:'#7c8894',t:'#fff'},
+  },
+  light: {
+    prov:{c:'#c23b3b',t:'#fff'}, nationellt:{c:'#7a4fc9',t:'#fff'}, muntligt:{c:'#2f6fc2',t:'#fff'},
+    inlamning:{c:'#c9822a',t:'#fff'}, laxa:{c:'#b8a02a',t:'#fff'}, lov:{c:'#4f8f52',t:'#fff'}, ovrigt:{c:'#6b6250',t:'#fff'},
+  },
+};
+
+// hand-authored tasks near sketch, indexed by dateKey
+function buildTasks(){
+  const w0 = weekStartDate(1); // week 35 monday = 24 aug per sketch
+  function d(off){ const x = new Date(w0); x.setDate(x.getDate()+off); return x; }
+  const list = [
+    { id:1, child:'S', type:'ovrigt', title:'Börja söka praktikplatser', date:d(0), time:'17:00 Planera skolarbete', period:['24 aug','24 aug'], weight:2, desc:'Sök minst tre praktikplatser inför PRAO-perioden i vår. Fråga vårdnadshavare om skjuts.', links:['SYV – praktiklista.pdf'], done:false },
+    { id:2, child:'S', type:'ovrigt', title:'Gymnasieinfo från SYV 10:15', date:d(1), time:'', period:['25 aug','25 aug'], weight:1, desc:'Informationspass om gymnasievalet, hålls i aulan.', links:[], done:false },
+    { id:3, child:'S', type:'laxa', title:'Kemiläxa: grundläggande begrepp', date:d(2), time:'', period:['26 aug','28 aug'], weight:3, desc:'Läs kapitel 1–2 och besvara frågorna på s.12. Ta med anteckningar till lektionen.', links:['Kemi kap 1–2.pdf'], done:false },
+    { id:4, child:'G', type:'laxa', title:'Läsläxa: Läsbok BLÅ till s.40', date:d(3), time:'17:30 Tuba ws vid pingisbordet', period:['27 aug','2 sep'], weight:2, desc:'Läs till och med sidan 40 i läseboken. Var beredd att sammanfatta muntligt.', links:['Läsbok BLÅ (bibliotek)'], done:false },
+    { id:5, child:'S', type:'inlamning', title:'Läxförhör: begrepp privatekonomi', date:d(8), time:'20:00 Väga Gustav', period:['1 sep','1 sep'], weight:3, desc:'Förhör på centrala begrepp: ränta, amortering, budget. Se genomgången i classroom.', links:['Privatekonomi – begreppslista'], done:false },
+    { id:6, child:'G', type:'prov', title:'Skolval 13:25 + föräldramöte', date:d(10), time:'', period:['3 sep','3 sep'], weight:4, desc:'Provtillfälle för skolvalet, följt av föräldramöte kl 18:00 i matsalen.', links:[], done:false },
+    { id:7, child:'G', type:'laxa', title:'Läsläxa: Läsbok BLÅ till s.80', date:d(10), time:'', period:['3 sep','9 sep'], weight:2, desc:'Fortsätt läsningen till sidan 80.', links:['Läsbok BLÅ (bibliotek)'], done:false },
+    { id:8, child:'S', type:'muntligt', title:'Skolval 13:55', date:d(10), time:'', period:['3 sep','3 sep'], weight:2, desc:'Muntlig genomgång av skolvalsalternativ i mentorstid.', links:[], done:false },
+    { id:9, child:'G', type:'laxa', title:'Läxa 1', date:d(11), time:'', period:['4 sep','4 sep'], weight:1, desc:'Vardagslätt läxa, se classroom för detaljer.', links:[], done:false },
+    { id:10, child:'G', type:'inlamning', title:'Läxa kap 4a: transportmedel', date:d(11), time:'', period:['4 sep','10 sep'], weight:3, desc:'Ordkunskap kring transportmedel, kapitel 4a. Skriftligt inlämningsuppgift.', links:['Kap 4a – ordlista.pdf'], done:false },
+  ];
+  return list;
+}
+
+const THEME_TOKENS = {
+  dark: {
+    '--color-bg': '#0b0f14', '--color-text': '#eef1f0',
+    '--color-neutral-100': '#121821', '--color-neutral-200': '#1c2530', '--color-neutral-300': '#2a3543',
+    '--color-neutral-400': '#45525f', '--color-neutral-500': '#64707c', '--color-neutral-600': '#8b96a0',
+    '--color-neutral-700': '#aab3ba', '--color-neutral-800': '#cdd3d7',
+    '--color-accent-400': '#ec8ebc', '--color-accent-500': '#e0609e', '--color-accent-600': '#c94a86',
+    '--color-accent-700': '#a53a6c', '--color-accent-900': '#5c1f3c',
+    '--color-accent-2-200': '#163842', '--color-accent-2-400': '#2a6d7a', '--color-accent-2-500': '#2fb4c9',
+    '--color-accent-2-600': '#2494a6', '--color-accent-2-700': '#1c7482',
+    '--shadow-sm': '0 1px 2px rgba(0,0,0,.4)', '--shadow-lg': '0 20px 50px rgba(0,0,0,.6)',
+  },
+  light: {
+    '--color-bg': '#f2ede3', '--color-text': '#171512',
+    '--color-neutral-100': '#e9e2d3', '--color-neutral-200': '#ddd4c0', '--color-neutral-300': '#cbbfa5',
+    '--color-neutral-400': '#a89b7e', '--color-neutral-500': '#8a7d63', '--color-neutral-600': '#6b6250',
+    '--color-neutral-700': '#4d473a', '--color-neutral-800': '#2c2820',
+    '--color-accent-400': '#e888b5', '--color-accent-500': '#d94f8f', '--color-accent-600': '#b93b74',
+    '--color-accent-700': '#93305d', '--color-accent-900': '#4a1830',
+    '--color-accent-2-200': '#cdeaf0', '--color-accent-2-400': '#6cc0cf', '--color-accent-2-500': '#1fa3b8',
+    '--color-accent-2-600': '#17869a', '--color-accent-2-700': '#136a7a',
+    '--shadow-sm': '0 1px 2px rgba(0,0,0,.08)', '--shadow-lg': '0 20px 50px rgba(0,0,0,.18)',
+  },
+};
+const SHARED_TOKENS = { '--radius-lg': '14px', '--font-heading': "'Space Grotesk',sans-serif", '--font-body': "'Inter',sans-serif" };
+
+class Component extends DCLogic {
+  state = {
+    activeChild: 'both', tab: 'home', metric: 'effort', range: '2', selectedWeekIdx: 1,
+    weekSheet: null, taskSheet: null, daySheet: null, calMonthOffset: 0, selectedDayKey: null,
+    weightOverride: {}, doneMap: {}, accentG: 'var(--color-accent-500)', theme: 'dark',
+    thresholds: { amaze: 6, lagom: 12, wtf: 20 },
+  };
+
+  constructor(props){ super(props); this.tasks = buildTasks(); }
+
+  getWeight(t){ return this.state.weightOverride[t.id] ?? t.weight; }
+  isDone(t){ return !!this.state.doneMap[t.id]; }
+
+  tasksForRange(startIdx, endIdx){
+    const s = weekStartDate(startIdx), e = weekStartDate(endIdx+1);
+    return this.tasks.filter(t => t.date >= s && t.date < e && (this.state.activeChild==='both' || (this.state.activeChild==='g'?t.child==='G':t.child==='S')));
+  }
+
+  renderVals(){
+    const st = this.state;
+    const accentG = st.accentG;
+    const tokens = { ...THEME_TOKENS[st.theme], ...SHARED_TOKENS };
+    const typeColor = (type) => TYPE_COLORS[st.theme][type];
+    const childColor = (child) => child === 'G' ? accentG : 'var(--color-accent-2-500)';
+    const tokensCss = Object.entries(tokens).map(([k, v]) => `${k}:${v}`).join(';') + ';';
+
+    const childTabs = ['both','g','s'].map(key => {
+      const active = st.activeChild === key;
+      const label = key==='both'?'Båda':key==='g'?'Gustav':'Syno';
+      return { label, onClick: () => this.setState({activeChild:key}), style: `padding:9px 18px;border-radius:999px;border:1.5px solid ${active?'var(--color-text)':'var(--color-neutral-300)'};background:${active?'var(--color-text)':'transparent'};color:${active?'var(--color-bg)':'var(--color-text)'};font:600 13px var(--font-body);cursor:pointer;` };
+    });
+
+    function dotStyle(color){ return `width:9px;height:9px;border-radius:50%;background:${color};display:inline-block;`; }
+
+    const kidsInfo = [
+      { key:'g', name:'Gustav', className:'8C', color: accentG },
+      { key:'s', name:'Syno', className:'9B', color: 'var(--color-accent-2-500)' },
+    ].filter(k => st.activeChild==='both' || st.activeChild===k.key);
+
+    const termCards = kidsInfo.map(k => {
+      const totalWeight = this.tasks.filter(t=>t.child===k.key.toUpperCase()).reduce((a,t)=>a+this.getWeight(t),0);
+      const doneCount = this.tasks.filter(t=>t.child===k.key.toUpperCase() && this.isDone(t)).length;
+      return {
+        name: k.name, className: k.className,
+        dotStyle: dotStyle(k.color),
+        progress: `${doneCount} avklarade · insats ${doneCount} av ${totalWeight}`,
+        fillStyle: `position:absolute;left:0;top:0;bottom:0;width:14%;background:${k.color};opacity:.55;border-radius:999px 0 0 999px;`,
+      };
+    });
+
+    const TODAY = new Date(2026, 7, 25);
+    const visibleTasks = this.tasks.filter(t => st.activeChild==='both' || (st.activeChild==='g'?t.child==='G':t.child==='S'));
+    const upcoming = visibleTasks.filter(t => t.date >= TODAY).sort((a,b)=>a.date-b.date);
+    const nextTaskObj = upcoming[0];
+    let nextTask = null;
+    if (nextTaskObj) {
+      const days = Math.round((nextTaskObj.date - TODAY) / 86400000);
+      const tc = typeColor(nextTaskObj.type);
+      const kidColor = childColor(nextTaskObj.child);
+      const kidName = nextTaskObj.child === 'G' ? 'Gustav · 8C' : 'Syno · 9B';
+      nextTask = {
+        nextTaskCardStyle: `display:block;width:100%;text-align:left;position:relative;background:color-mix(in srgb, ${kidColor} 14%, var(--color-neutral-100));border:1px solid var(--color-neutral-200);border-left:4px solid ${kidColor};border-radius:var(--radius-lg);padding:18px 18px 18px 16px;margin-bottom:16px;cursor:pointer;box-shadow:var(--shadow-sm);font-family:var(--font-body);`,
+        nextTaskCardHoverStyle: `border-color:${kidColor};`,
+        nextTaskOnClick: () => this.setState({ taskSheet: nextTaskObj }),
+        nextTaskBadgeStyle: `position:absolute;top:18px;right:18px;padding:5px 12px;border-radius:8px;background:${tc.c};color:${tc.t};font:700 11px var(--font-body);letter-spacing:.04em;text-transform:uppercase;`,
+        nextTaskBadgeLabel: TYPE_META[nextTaskObj.type].label,
+        nextTaskTitle: nextTaskObj.title,
+        nextTaskDateLabel: fmtDateFull(nextTaskObj.date),
+        nextTaskCountdownStyle: `padding:2px 9px;border-radius:999px;background:var(--color-neutral-200);color:var(--color-text);font:600 12px var(--font-body);`,
+        nextTaskCountdownLabel: days === 0 ? 'idag' : days === 1 ? 'imorgon' : `om ${days} dagar`,
+        nextTaskDotStyle: dotStyle(kidColor),
+        nextTaskChildLine: kidName,
+        nextTaskSubtitle: `Arbetsperiod: ${nextTaskObj.period.join(' – ')}`,
+        nextTaskDesc: nextTaskObj.desc + (nextTaskObj.links.length ? ` — ${nextTaskObj.links.length} källor, klicka för underlag` : ''),
+        nextTaskChevronStyle: `position:absolute;bottom:16px;right:18px;font:600 20px var(--font-body);color:var(--color-neutral-500);`,
+      };
+    }
+
+    const maxLevel = 4;
+    const weekPills = WEEK_NUMS.map((num, i) => {
+      const gl = G_LEVELS[i], sl = S_LEVELS[i];
+      const lvl = st.activeChild==='g' ? gl : st.activeChild==='s' ? sl : Math.max(gl,sl);
+      const shade = ['var(--color-neutral-100)','var(--color-accent-2-200)','var(--color-accent-2-400)','var(--color-accent-600)','var(--color-accent-900)'][lvl];
+      const isWtf = lvl===4;
+      const isSel = st.selectedWeekIdx===i;
+      return {
+        label: String(num),
+        style: `position:relative;padding:7px 0;border-radius:8px;border:${isSel?'2px solid var(--color-text)':'1px solid transparent'};background:${shade};color:${lvl>=3?'#fff':'var(--color-text)'};font:600 11px var(--font-body);cursor:pointer;${isWtf?'font-weight:800;':''}`,
+        onClick: () => this.setState({ selectedWeekIdx:i, weekSheet: num }),
+      };
+    });
+
+    const legendLevels = LEVEL_LABELS.map((label,i) => ({
+      label, swatch: `${dotStyle(['var(--color-neutral-100)','var(--color-accent-2-200)','var(--color-accent-2-400)','var(--color-accent-600)','var(--color-accent-900)'][i])}border:1px solid var(--color-neutral-300);`
+    }));
+
+    const metricTabs = [ ['count','Antal saker'], ['effort','Arbetsinsats'] ].map(([key,label]) => {
+      const active = st.metric===key;
+      return { label, onClick: () => this.setState({metric:key}), style: `padding:8px 16px;border-radius:999px;border:1.5px solid ${active?'var(--color-text)':'var(--color-neutral-300)'};background:${active?'var(--color-text)':'transparent'};color:${active?'var(--color-bg)':'var(--color-text)'};font:600 12.5px var(--font-body);cursor:pointer;` };
+    });
+
+    const rangeMap = { '1':1, '2':2, '4':4, '8':8, 'lov':3 };
+    const rangeTabs = [ ['1','1 vecka'], ['2','2 veckor'], ['4','4 veckor'], ['8','8 veckor'], ['lov','Till nästa lov'] ].map(([key,label]) => {
+      const active = st.range===key;
+      return { label, onClick: () => this.setState({range:key}), style: `flex:none;padding:8px 16px;border-radius:999px;border:1.5px solid ${active?'var(--color-text)':'var(--color-neutral-300)'};background:${active?'var(--color-text)':'transparent'};color:${active?'var(--color-bg)':'var(--color-text)'};font:600 12.5px var(--font-body);cursor:pointer;white-space:nowrap;` };
+    });
+    const rangeTitle = 'Kommande ' + (st.range==='lov' ? 'lov' : rangeMap[st.range] + (rangeMap[st.range]===1?' vecka':' veckor'));
+
+    const typeLegend = Object.entries(TYPE_META).map(([key,m]) => ({ label: m.label, swatch: `width:${m.dot}px;height:${m.dot}px;border-radius:50%;background:${typeColor(key).c};display:inline-block;` }));
+
+    const weeksToShow = rangeMap[st.range];
+    const weekBlocks = [];
+    for(let w=0; w<weeksToShow; w++){
+      const idx = st.selectedWeekIdx + w;
+      const weekStart = weekStartDate(idx);
+      const days = [];
+      for(let dIdx=0; dIdx<7; dIdx++){
+        const dd = new Date(weekStart); dd.setDate(dd.getDate()+dIdx);
+        const dayTasks = this.tasks.filter(t => dateKey(t.date)===dateKey(dd) && (st.activeChild==='both' || (st.activeChild==='g'?t.child==='G':t.child==='S')));
+        days.push({
+          dow: DOW[dIdx], dateLabel: fmtDate(dd),
+          cardStyle: `background:var(--color-neutral-100);border-radius:12px;padding:8px 6px;min-height:70px;display:flex;flex-direction:column;gap:4px;`,
+          tasks: dayTasks.map(t => {
+            const cc = childColor(t.child);
+            return {
+              chipLabel: `${t.child} · ${t.title.length>16?t.title.slice(0,15)+'…':t.title}`,
+              chipDotStyle: dotStyle(typeColor(t.type).c),
+              onClick: () => this.setState({ taskSheet: t }),
+              chipStyle: `display:flex;align-items:center;gap:4px;text-align:left;border:none;border-radius:8px;padding:5px 6px;background:${cc};color:#fff;font:600 10.5px/1.25 var(--font-body);cursor:pointer;`,
+            };
+          }),
+        });
+        if(days[days.length-1].tasks.some(()=>false)){}
+      }
+      weekBlocks.push({ label: `Vecka ${WEEK_NUMS[idx] ?? ''}`, days });
+    }
+
+    const tabBar = [ ['home','🏠','Översikt'], ['calendar','📅','Kalender'], ['settings','⚙️','Inställningar'] ].map(([key,icon,label]) => {
+      const active = st.tab===key;
+      return { icon, label, onClick: () => this.setState({tab:key}), style: `flex:1;display:flex;flex-direction:column;align-items:center;background:none;border:none;color:${active?'var(--color-accent-700)':'var(--color-neutral-500)'};cursor:pointer;padding:4px 0;` };
+    });
+
+    // Calendar tab
+    const baseMonth = new Date(YEAR_START.getFullYear(), YEAR_START.getMonth() + st.calMonthOffset, 1);
+    const monthLabel = MONTHS[(baseMonth.getMonth()+12-7)%12] + ' ' + baseMonth.getFullYear();
+    const firstDow = (baseMonth.getDay()+6)%7;
+    const daysInMonth = new Date(baseMonth.getFullYear(), baseMonth.getMonth()+1, 0).getDate();
+    const monthCells = [];
+    for(let i=0;i<firstDow;i++) monthCells.push({ dateLabel:'', dots:[], style:'visibility:hidden;', onClick:()=>{} });
+    for(let day=1; day<=daysInMonth; day++){
+      const dd = new Date(baseMonth.getFullYear(), baseMonth.getMonth(), day);
+      const dayTasks = this.tasks.filter(t => dateKey(t.date)===dateKey(dd));
+      const isSel = st.selectedDayKey===dateKey(dd);
+      monthCells.push({
+        dateLabel: String(day),
+        dots: dayTasks.slice(0,3).map(t => { const dotSize = TYPE_META[t.type].dot; const c = childColor(t.child); return { style: `width:${dotSize}px;height:${dotSize}px;border-radius:50%;background:${c};display:inline-block;` }; }),
+        onClick: () => {
+          if (dayTasks.length === 0) return;
+          this.setState(dayTasks.length === 1
+            ? { selectedDayKey: dateKey(dd), taskSheet: dayTasks[0] }
+            : { selectedDayKey: dateKey(dd), daySheet: dateKey(dd) });
+        },
+        style: `padding:8px 0;border-radius:10px;border:${isSel?'2px solid var(--color-text)':'1px solid var(--color-neutral-200)'};background:${isSel?'var(--color-neutral-100)':'transparent'};font:500 12px var(--font-body);color:var(--color-text);cursor:pointer;`,
+      });
+    }
+    const dayTasksSel = st.daySheet ? this.tasks.filter(t=>dateKey(t.date)===st.daySheet) : [];
+    const daySheetDate = dayTasksSel[0]?.date;
+
+    return {
+      appStyle: `${tokensCss}display:flex;flex-direction:column;height:100%;background:var(--color-bg);font-family:var(--font-body);position:relative;overflow:hidden;`,
+      nextTask: !!nextTask,
+      ...(nextTask || {}),
+      isDark: st.theme === 'dark',
+      themeToggleStyle: `width:36px;height:36px;border-radius:50%;border:1.5px solid var(--color-neutral-300);background:transparent;font-size:15px;cursor:pointer;flex:none;`,
+      themeToggleIcon: st.theme === 'dark' ? '☀️' : '🌙',
+      toggleTheme: () => this.setState({ theme: st.theme === 'dark' ? 'light' : 'dark' }),
+      subtitle: 'Gustav 8C · Syno 9B — läsåret 2026/27',
+      childTabs, termCards, weekPills, legendLevels, metricTabs, rangeTabs, rangeTitle, typeLegend, weekBlocks, tabBar,
+
+      tab: st.tab,
+      monthNavStyle: `background:var(--color-neutral-100);border:none;border-radius:50%;width:32px;height:32px;font:600 16px var(--font-body);color:var(--color-text);cursor:pointer;`,
+      monthLabel, monthCells,
+      prevMonth: () => this.setState({ calMonthOffset: st.calMonthOffset-1 }),
+      nextMonth: () => this.setState({ calMonthOffset: st.calMonthOffset+1 }),
+      daySheet: !!st.daySheet,
+      daySheetLabel: daySheetDate ? fmtDateFull(daySheetDate) : '',
+      daySheetTasks: dayTasksSel.map(t => ({
+        rowLabel: `${t.child} · ${TYPE_META[t.type].label} — ${t.title}`,
+        onClick: () => this.setState({ taskSheet: t, daySheet: null }),
+        rowStyle: `display:block;width:100%;text-align:left;background:var(--color-neutral-100);border:none;border-radius:10px;padding:10px 12px;margin-bottom:6px;font:500 13px var(--font-body);color:var(--color-text);cursor:pointer;`,
+      })),
+
+      settingsKids: [
+        { name:'Gustav', className:'8C', dotStyle: dotStyle(accentG) },
+        { name:'Syno', className:'9B', dotStyle: dotStyle('var(--color-accent-2-500)') },
+      ],
+      themeSwatches: ['var(--color-accent-500)','var(--color-accent-700)','var(--color-accent-2-500)','var(--color-accent-2-700)'].map(c => ({
+        style: `width:34px;height:34px;border-radius:50%;background:${c};border:${st.accentG===c?'3px solid var(--color-text)':'2px solid transparent'};cursor:pointer;`,
+        onClick: () => this.setState({ accentG: c }),
+      })),
+      thresholdRows: [
+        { emoji:'⚪', label:'tomt', fixed:'0' },
+        { emoji:'🌟', label:'Amaze! upp till', key:'amaze' },
+        { emoji:'🙂', label:'lagom upp till', key:'lagom' },
+        { emoji:'🫠', label:'WTF? från', key:'wtf' },
+      ].map(row => row.key ? {
+        ...row,
+        value: st.thresholds[row.key],
+        onChange: (e) => { const v = parseInt(e.target.value, 10); if (!isNaN(v)) this.setState({ thresholds: { ...st.thresholds, [row.key]: v } }); },
+      } : row),
+
+      // task sheet
+      taskSheet: !!st.taskSheet,
+      sheetBackdropStyle: `position:absolute;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:flex-end;z-index:50;`,
+      sheetPanelStyle: `background:var(--color-bg);border-radius:24px 24px 0 0;padding:20px 20px calc(env(safe-area-inset-bottom,0px) + 24px);width:100%;max-height:80%;overflow-y:auto;box-shadow:var(--shadow-lg);`,
+      closeSheets: () => this.setState({ taskSheet:null, weekSheet:null, daySheet:null }),
+      stopProp: (e) => e.stopPropagation(),
+      taskSheetTypeSwatch: st.taskSheet ? dotStyle(typeColor(st.taskSheet.type).c) : '',
+      taskSheetTypeLabel: st.taskSheet ? TYPE_META[st.taskSheet.type].label : '',
+      taskSheetTitle: st.taskSheet ? st.taskSheet.title : '',
+      taskSheetChildLine: st.taskSheet ? `${st.taskSheet.child==='G'?'Gustav · 8C':'Syno · 9B'}${st.taskSheet.time ? ' · '+st.taskSheet.time : ''}` : '',
+      taskSheetPeriod: st.taskSheet ? st.taskSheet.period.join(' – ') : '',
+      taskSheetWeight: st.taskSheet ? this.getWeight(st.taskSheet) : '',
+      weightMinusStyle: `width:26px;height:26px;border-radius:50%;border:1px solid var(--color-neutral-300);background:transparent;font:600 15px var(--font-body);color:var(--color-text);cursor:pointer;`,
+      weightPlusStyle: `width:26px;height:26px;border-radius:50%;border:1px solid var(--color-neutral-300);background:transparent;font:600 15px var(--font-body);color:var(--color-text);cursor:pointer;`,
+      decWeight: () => { if(!st.taskSheet) return; const id=st.taskSheet.id; const cur=this.getWeight(st.taskSheet); this.setState({ weightOverride: {...st.weightOverride, [id]: Math.max(1,cur-1)} }); },
+      incWeight: () => { if(!st.taskSheet) return; const id=st.taskSheet.id; const cur=this.getWeight(st.taskSheet); this.setState({ weightOverride: {...st.weightOverride, [id]: Math.min(9,cur+1)} }); },
+      taskSheetDesc: st.taskSheet ? st.taskSheet.desc : '',
+      taskSheetLinks: st.taskSheet ? st.taskSheet.links.map(l=>({label:l})) : [],
+      doneButtonLabel: st.taskSheet && this.isDone(st.taskSheet) ? '✓ Klarmarkerad' : 'Markera klar',
+      doneButtonStyle: `width:100%;padding:13px;border-radius:999px;border:none;cursor:pointer;font:700 14px var(--font-body);background:${st.taskSheet && this.isDone(st.taskSheet) ? 'var(--color-accent-2-600)' : 'var(--color-text)'};color:${st.taskSheet && this.isDone(st.taskSheet) ? '#fff' : 'var(--color-bg)'};`,
+      toggleDone: () => { if(!st.taskSheet) return; const id=st.taskSheet.id; this.setState({ doneMap: {...st.doneMap, [id]: !this.isDone(st.taskSheet)} }); },
+
+      // week sheet
+      weekSheet: !!st.weekSheet,
+      weekSheetNumber: st.weekSheet || '',
+      weekSheetDateRange: (() => { if(!st.weekSheet) return ''; const idx = WEEK_NUMS.indexOf(st.weekSheet); const s = weekStartDate(idx); const e = new Date(s); e.setDate(e.getDate()+6); return fmtDate(s) + ' – ' + fmtDate(e); })(),
+      weekSheetKidRows: (() => {
+        if(!st.weekSheet) return [];
+        const idx = WEEK_NUMS.indexOf(st.weekSheet);
+        return [
+          { name:'Gustav', dotStyle: dotStyle(accentG), lvl: G_LEVELS[idx] },
+          { name:'Syno', dotStyle: dotStyle('var(--color-accent-2-500)'), lvl: S_LEVELS[idx] },
+        ].map(k => ({
+          name:k.name, dotStyle:k.dotStyle,
+          badgeLabel: LEVEL_LABELS[k.lvl] + (k.lvl===4?' 🫠':k.lvl===1?' 🌟':''),
+          badgeStyle: `padding:4px 10px;border-radius:999px;font:600 11.5px var(--font-body);background:${['var(--color-neutral-100)','var(--color-accent-2-200)','var(--color-accent-2-400)','var(--color-accent-600)','var(--color-accent-900)'][k.lvl]};color:${k.lvl>=3?'#fff':'var(--color-text)'};`,
+        }));
+      })(),
+      weekSheetNote: 'Arbetsinsats räknas per dag utifrån hur uppgifternas vikt fördelas över arbetsperioden.',
+    };
+  }
+}
+
+</script>
+</body>
+</html>
