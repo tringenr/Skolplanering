@@ -66,7 +66,7 @@ function weekRow(){
     const k=wkKey(w),l=load[k]||0;
     const c=l===0?ramp[0]:l<=th[0]?ramp[1]:l<=th[1]?ramp[2]:l<=th[2]?ramp[3]:ramp[4];
     const dark=l>th[1];
-    return `<button class="wk ${k===nowK?"now":""} ${k===selWeek?"sel":""}" data-k="${k}" style="background:var(${c});color:${dark?"#0a0d14":"var(--muted)"}" title="Vecka ${iw(w)} · ${meas==="count"?Math.round(l)+" uppgifter":"insats "+l.toFixed(1)}">${iw(w)}</button>`;
+    return `<button class="wk ${k===nowK?"now":""} ${k===selWeek?"sel":""}" data-k="${k}" style="background:var(${c});color:${dark?"#fff":"var(--muted)"}" title="Vecka ${iw(w)} · ${meas==="count"?Math.round(l)+" uppgifter":"insats "+l.toFixed(1)}">${iw(w)}</button>`;
   }).join("")+`</div>`;
 }
 
