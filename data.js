@@ -203,5 +203,5 @@ function wkKey(d){const t=new Date(d);t.setDate(t.getDate()-((t.getDay()+6)%7));
 const SUBJECT_CANON=["Bild","Biologi","Engelska","Fysik","HKK","Idrott","Kemi","Matematik","Moderna språk","Musik","SO","Slöjd","Svenska","Teknik"];
 const MISSING={
  "Gustav":["Biologi","Fysik","HKK","Musik","Teknik"],
- "Syno":["Bild","Engelska","Fysik","Musik","Slöjd","Teknik"]
+ "Syno":["Bild","Fysik","Musik","Slöjd","Teknik"]
 };
