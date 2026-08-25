@@ -54,7 +54,10 @@ function renderSettings(){
     intensivt ≤ <input type="number" class="thinp" data-m="${key}" data-i="2" value="${TH[key][2]}" min="1">
     <span style="color:var(--faint)">${unit}, däröver WTF?</span></div>`;
   const docsN=k=>Object.keys(D[k].docs).length;
-  el.innerHTML=`<h2 style="margin-top:.5rem">Barn</h2>`+["Gustav","Syno"].map(kid).join("")+
+  el.innerHTML=`<h2 style="margin-top:.5rem">Utseende</h2>
+  <div class="card" style="margin-bottom:.6rem;display:flex;align-items:center;gap:.8rem;flex-wrap:wrap"><span style="font-size:.85rem">Tema</span>
+  <div class="seg thememode" style="margin:0"><button data-th="dark" class="${theme==="dark"?"on":""}">🌙 Mörkt</button><button data-th="light" class="${theme==="light"?"on":""}">☀️ Ljust</button></div></div>
+  <h2>Barn</h2>`+["Gustav","Syno"].map(kid).join("")+
   `<h2>Trösklar för veckobelastning</h2><div class="card">${th("count","Antal saker","saker")}${th("effort","Arbetsinsats","insats")}
    <button class="rst" id="threset">Återställ standardvärden</button></div>
   <h2>Källor och synk</h2>
@@ -63,6 +66,7 @@ function renderSettings(){
   el.querySelectorAll(".nameinp").forEach(i=>i.onchange=()=>{NAMES[i.dataset.k]=i.value.trim()||i.dataset.k;PREFS.names=NAMES;saveP();syncNames();render()});
   el.querySelectorAll(".swatch").forEach(b=>b.onclick=()=>{ACCENTS[b.dataset.k]=b.dataset.p;PREFS.accents=ACCENTS;saveP();applyAccents();render()});
   el.querySelectorAll(".thinp").forEach(i=>i.onchange=()=>{const v=Math.max(1,+i.value||1);TH[i.dataset.m][+i.dataset.i]=v;PREFS.th=TH;saveP();render()});
+  el.querySelectorAll(".thememode button").forEach(b=>b.onclick=()=>{theme=b.dataset.th;PREFS.theme=theme;saveP();applyTheme();});
   const rb=document.getElementById("threset");if(rb)rb.onclick=()=>{TH.count=[2,4,7];TH.effort=[3,6,10];PREFS.th=TH;saveP();render()};
 }
 function syncNames(){
@@ -71,7 +75,7 @@ function syncNames(){
 }
 function setTab(t){tab=t;PREFS.tab=t;saveP();document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.id==="tab-"+t));document.querySelectorAll("#tabbar button").forEach(b=>b.classList.toggle("on",b.dataset.tab===t));}
 let theme=PREFS.theme||(window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");
-function applyTheme(){document.body.classList.toggle("light",theme==="light");const b=document.getElementById("themebtn");if(b)b.textContent=theme==="dark"?"☀️":"🌙";}
+function applyTheme(){document.body.classList.toggle("light",theme==="light");document.querySelectorAll(".thememode button").forEach(b=>b.classList.toggle("on",b.dataset.th===theme));}
 function typeOn(t){return !hiddenTypes.has(t)}
 const iso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
 function dayLoad(){
@@ -350,8 +354,6 @@ document.getElementById("who").onclick=e=>{if(!e.target.dataset.c)return;who=e.t
   setTab(tab);
   document.getElementById("tabbar").onclick=e=>{const b=e.target.closest("button");if(b&&b.dataset.tab)setTab(b.dataset.tab)};
   applyTheme();
-  const tb=document.getElementById("themebtn");
-  if(tb)tb.onclick=()=>{theme=theme==="dark"?"light":"dark";PREFS.theme=theme;saveP();applyTheme();};
   render();
 })();
 (function(){
