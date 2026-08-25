@@ -6,6 +6,7 @@
 <h1>Skolplanering</h1>
 <p class="sub" id="sub">Gustav · Syno — läsåret 2026/27 · uppdrag pågår</p>
 
+<section class="tab" id="tab-ov">
 <div class="seg" id="who" style="margin-top:0">
   <button data-c="all" class="on">Båda</button>
   <button data-c="Gustav">Gustav</button>
@@ -35,6 +36,8 @@
   <button data-m="effort" class="on">Arbetsinsats</button>
 </div>
 
+</section>
+<section class="tab" id="tab-cal">
 <h2 id="periodTitle">Kommande</h2>
 <div class="seg" id="seg">
   <button data-w="1">1 vecka</button>
@@ -61,11 +64,20 @@
 </div>
 <div id="list"></div>
 
+</section>
+<section class="tab" id="tab-set">
+<h2>Inställningar</h2>
 <h2>Ämnen utan planeringsdokument ännu</h2>
 <div id="missing" style="margin-top:-.2rem"></div>
 <p class="hint">Jämfört med skolans ämneslista för åk 8/9. Vissa ämnen läses inte alla terminer — listan uppdateras automatiskt när nya dokument dyker upp i mapparna.</p>
 
 <p class="note">Data hämtad ur 18 planeringsdokument från lärarna, 24 aug 2026. Vikter: läxa 1 · läxförhör/diagnos 1,5 · inlämning 2 · prov 3 · muntligt 4 · nationellt prov 5. Materialsamling finns för prov och inlämningar i alla ämnen där lärarens dokument innehåller länkar. Rosa = Gustav, turkos = Syno genom hela sidan.</p>
+</section>
 </div>
+<nav class="tabbar" id="tabbar">
+  <button data-tab="ov" class="on"><span class="ti">🏠</span><span class="tl">Översikt</span></button>
+  <button data-tab="cal"><span class="ti">📅</span><span class="tl">Kalender</span></button>
+  <button data-tab="set"><span class="ti">⚙️</span><span class="tl">Inställningar</span></button>
+</nav>
 <script src="data.js"></script>
 <script src="app.js"></script>

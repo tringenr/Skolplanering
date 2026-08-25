@@ -16,7 +16,9 @@ if(PREFS.mode)mode=PREFS.mode;
 if(PREFS.meas)meas=PREFS.meas;
 if(PREFS.hideWknd!==undefined)hideWknd=PREFS.hideWknd;
 if(Array.isArray(PREFS.hiddenTypes))hiddenTypes=new Set(PREFS.hiddenTypes);
-function saveP(){try{localStorage.setItem("skolPrefs",JSON.stringify({span,who,mode,meas,hideWknd,theme:PREFS.theme,hiddenTypes:[...hiddenTypes]}))}catch(e){}}
+function saveP(){try{localStorage.setItem("skolPrefs",JSON.stringify({span,who,mode,meas,hideWknd,theme:PREFS.theme,tab,hiddenTypes:[...hiddenTypes]}))}catch(e){}}
+let tab=PREFS.tab||"ov";
+function setTab(t){tab=t;PREFS.tab=t;saveP();document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.id==="tab-"+t));document.querySelectorAll("#tabbar button").forEach(b=>b.classList.toggle("on",b.dataset.tab===t));}
 let theme=PREFS.theme||(window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");
 function applyTheme(){document.body.classList.toggle("light",theme==="light");const b=document.getElementById("themebtn");if(b)b.textContent=theme==="dark"?"☀️":"🌙";}
 function typeOn(t){return !hiddenTypes.has(t)}
@@ -258,7 +260,7 @@ function render(){
     detail(b.dataset.id);
   });
   document.querySelectorAll("[data-act]").forEach(b=>b.onclick=()=>actDetail(b.dataset.act));
-  document.querySelectorAll(".wk").forEach(b=>b.onclick=()=>{selWeek=selWeek===b.dataset.k?null:b.dataset.k;render();window.scrollTo({top:document.getElementById("periodTitle").offsetTop-20,behavior:"smooth"})});
+  document.querySelectorAll(".wk").forEach(b=>b.onclick=()=>{selWeek=selWeek===b.dataset.k?null:b.dataset.k;if(selWeek)setTab("cal");render();window.scrollTo({top:Math.max(0,document.getElementById("periodTitle").offsetTop-20),behavior:"smooth"})});
 }
 function setSpan(v){span=(v==="lov"||v==="year")?v:+v;selWeek=null;saveP();document.querySelectorAll("#seg button, #seg2 button").forEach(b=>b.classList.toggle("on",b.dataset.w===v));render();document.querySelectorAll("#seg button, #seg2 button").forEach(b=>b.classList.toggle("on",b.dataset.w===v))}
 document.getElementById("seg").onclick=e=>{if(e.target.dataset.w)setSpan(e.target.dataset.w)};
@@ -291,6 +293,8 @@ document.getElementById("who").onclick=e=>{if(!e.target.dataset.c)return;who=e.t
     if(x.dataset.t==="all")return;
     x.classList.toggle("off",x.dataset.t.split(",").every(t=>hiddenTypes.has(t)));
   });
+  setTab(tab);
+  document.getElementById("tabbar").onclick=e=>{const b=e.target.closest("button");if(b&&b.dataset.tab)setTab(b.dataset.tab)};
   applyTheme();
   const tb=document.getElementById("themebtn");
   if(tb)tb.onclick=()=>{theme=theme==="dark"?"light":"dark";PREFS.theme=theme;saveP();applyTheme();};
