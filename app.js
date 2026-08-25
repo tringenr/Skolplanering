@@ -237,7 +237,8 @@ function render(){
   document.getElementById("nextprov").innerHTML=nextProv();
   document.getElementById("missing").innerHTML=(typeof MISSING!=="undefined")?(who==="all"?["Gustav","Syno"]:[who]).map(k=>{
     const m=MISSING[k]||[];if(!m.length)return "";
-    return `<span style="display:block;margin-top:.2rem"><span class="dot" style="background:${D[k].col}"></span>${k}: ${m.join(", ").toLowerCase()}</span>`;
+    return `<div style="margin-top:.5rem"><span style="font-size:.85rem"><span class="dot" style="background:${D[k].col}"></span>${k}</span><br>`+
+      m.map(x=>`<span style="display:inline-block;margin:.25rem .3rem 0 0;padding:.28rem .7rem;border:1.5px solid ${D[k].col};border-radius:999px;color:var(--text);font-size:.85rem;font-weight:600">${x}</span>`).join("")+`</div>`;
   }).join(""):"";
   document.getElementById("weeks").innerHTML=weekRow();
   document.getElementById("list").innerHTML=(mode==="cal"&&span!=="year")?cal():list();
