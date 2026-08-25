@@ -283,20 +283,22 @@ function nextProv(){
     const wk=wkKey(pd(provs[0].date));
     cards=cards.concat(provs.filter(e=>wkKey(pd(e.date))===wk));
   });
-  if(!cards.length)return `<div class="empty">Inga kommande prov.</div>`;
-  const bg=c=>c==="Gustav"?"rgba(224,103,142,.10)":"rgba(63,192,207,.10)";
+  if(!cards.length)return "";
   return `<div class="npgrid">`+cards.map(e=>{
     const d=pd(e.date),diff=Math.round((d-T)/864e5);
     const rel=diff===0?"idag":diff===1?"imorgon":`om ${diff} dagar`;
     const m=MATLIB[e.child[0]+"|"+e.date+"|"+e.subject];
-    return `<div class="ev" data-id="${e.id}" style="cursor:pointer;border-color:${D[e.child].col};border-width:1.5px;background:${bg(e.child)};margin-bottom:0">
-      <div class="evtop"><div>
-        <div style="font-size:1.15rem;font-weight:700;color:${D[e.child].col};line-height:1.2">${e.subject}</div>
-        <div style="font-size:.95rem;font-weight:600;margin-top:.15rem">${DAY[d.getDay()]} ${d.getDate()} ${MON[d.getMonth()]} <span style="color:var(--accent)">· ${rel}</span></div>
-        <div class="evmeta" style="margin-top:.3rem"><span class="dot" style="background:${D[e.child].col}"></span>${DN(e.child)} · ${e.title}</div>
-        ${m?`<div class="evmeta" style="margin-top:.3rem">${m.desc} — ${m.links.length} källor, klicka för underlag</div>`:""}
-      </div><span class="when" style="background:${COL[e.type]}">${LBL[e.type]}</span></div>
-    </div>`;
+    const col=D[e.child].col;
+    const st=new Date(d);st.setDate(st.getDate()-e.days);
+    return `<button class="npcard" data-id="${e.id}" style="border-left:4px solid ${col};background:color-mix(in srgb, ${col} 14%, var(--card));--np-accent:${col}">
+      <span class="npbadge" style="background:${COL[e.type]}">${LBL[e.type]}</span>
+      <span class="nptitle">${e.title}</span>
+      <span class="npdate">${DAY[d.getDay()].slice(0,3)} ${d.getDate()} ${MON[d.getMonth()]} <span class="npcount">${rel}</span></span>
+      <span class="npchild"><span class="dot" style="background:${col}"></span>${e.child} · ${e.subject}</span>
+      ${e.days>0?`<span class="npperiod">Arbetsperiod: ${st.getDate()} ${MON[st.getMonth()]} – ${d.getDate()} ${MON[d.getMonth()]}</span>`:""}
+      ${m?`<span class="npdesc">${m.desc}${m.links.length?` — ${m.links.length} källor, klicka för underlag`:""}</span>`:""}
+      <span class="npchev">›</span>
+    </button>`;
   }).join("")+`</div>`;
 }
 function render(){
