@@ -13,6 +13,21 @@
   --font-head:'Space Grotesk',-apple-system,'Segoe UI',Roboto,sans-serif;
   --font-body:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;
 }
+
+body.light{
+  --bg:#f2ede3; --card:#e9e2d3; --card2:#ddd4c0; --text:#171512; --muted:#6b6250; --faint:#8a7d63;
+  --line:#ddd4c0; --line2:#cbbfa5; --accent:#17869a;
+  --gustav:#d94f8f; --syno:#1fa3b8;
+  --w0:#e9e2d3; --w1:#cdeaf0; --w2:#6cc0cf; --w3:#b93b74; --w4:#4a1830;
+  --g1:#4a1830; --g2:#93305d; --g3:#b93b74; --g4:#d94f8f;
+  --s1:#cdeaf0; --s2:#136a7a; --s3:#17869a; --s4:#1fa3b8;
+  --prov:#c23b3b; --np:#7a4fc9; --inl:#c9822a; --lax:#b8a02a; --lov:#4f8f52; --info:#6b6250; --muntlig:#2f6fc2;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.08);
+  --shadow-lg:0 20px 50px rgba(0,0,0,.18);
+}
+body.light .pill[style*="--inl"],body.light .pill[style*="--lax"],body.light .when[style*="--inl"],body.light .when[style*="--lax"]{color:#fff}
+.themebtn{position:absolute;top:1.5rem;right:1.1rem;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--line2);background:transparent;cursor:pointer;font-size:1rem;line-height:1;display:flex;align-items:center;justify-content:center;padding:0}
+
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.6 var(--font-body);padding-bottom:3rem;position:relative}
 #stars{display:none}
