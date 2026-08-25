@@ -9,14 +9,6 @@ function all(){const o=[];for(const k in D)D[k].ev.forEach((e,i)=>{
 let EV=all(); const T=td();
 let span=2, who="all", selWeek=null, mode="cal", meas="effort", hideWknd=false;
 let hiddenTypes=new Set();
-let PREFS={};try{PREFS=JSON.parse(localStorage.getItem("skolPrefs")||"{}")}catch(e){}
-if(PREFS.span!==undefined)span=PREFS.span;
-if(PREFS.who)who=PREFS.who;
-if(PREFS.mode)mode=PREFS.mode;
-if(PREFS.meas)meas=PREFS.meas;
-if(PREFS.hideWknd!==undefined)hideWknd=PREFS.hideWknd;
-if(Array.isArray(PREFS.hiddenTypes))hiddenTypes=new Set(PREFS.hiddenTypes);
-function saveP(){try{localStorage.setItem("skolPrefs",JSON.stringify({span,who,mode,meas,hideWknd,hiddenTypes:[...hiddenTypes]}))}catch(e){}}
 function typeOn(t){return !hiddenTypes.has(t)}
 const iso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
 function dayLoad(){
@@ -243,6 +235,10 @@ function nextProv(){
 function render(){
   document.getElementById("tubes").innerHTML=(who==="all"?["Gustav","Syno"]:[who]).map(tube).join("");
   document.getElementById("nextprov").innerHTML=nextProv();
+  document.getElementById("missing").innerHTML=(typeof MISSING!=="undefined")?(who==="all"?["Gustav","Syno"]:[who]).map(k=>{
+    const m=MISSING[k]||[];if(!m.length)return "";
+    return `<span style="display:block;margin-top:.2rem"><span class="dot" style="background:${D[k].col}"></span>${k}: ${m.join(", ").toLowerCase()}</span>`;
+  }).join(""):"";
   document.getElementById("weeks").innerHTML=weekRow();
   document.getElementById("list").innerHTML=(mode==="cal"&&span!=="year")?cal():list();
   document.getElementById("seg2").innerHTML=document.getElementById("seg").innerHTML;
@@ -253,10 +249,10 @@ function render(){
   document.querySelectorAll("[data-act]").forEach(b=>b.onclick=()=>actDetail(b.dataset.act));
   document.querySelectorAll(".wk").forEach(b=>b.onclick=()=>{selWeek=selWeek===b.dataset.k?null:b.dataset.k;render();window.scrollTo({top:document.getElementById("periodTitle").offsetTop-20,behavior:"smooth"})});
 }
-function setSpan(v){span=(v==="lov"||v==="year")?v:+v;selWeek=null;saveP();document.querySelectorAll("#seg button, #seg2 button").forEach(b=>b.classList.toggle("on",b.dataset.w===v));render();document.querySelectorAll("#seg button, #seg2 button").forEach(b=>b.classList.toggle("on",b.dataset.w===v))}
+function setSpan(v){span=(v==="lov"||v==="year")?v:+v;selWeek=null;document.querySelectorAll("#seg button, #seg2 button").forEach(b=>b.classList.toggle("on",b.dataset.w===v));render();document.querySelectorAll("#seg button, #seg2 button").forEach(b=>b.classList.toggle("on",b.dataset.w===v))}
 document.getElementById("seg").onclick=e=>{if(e.target.dataset.w)setSpan(e.target.dataset.w)};
 document.getElementById("seg2").onclick=e=>{if(e.target.dataset.w)setSpan(e.target.dataset.w)};
-document.getElementById("meas").onclick=e=>{if(!e.target.dataset.m)return;meas=e.target.dataset.m;saveP();document.querySelectorAll("#meas button").forEach(b=>b.classList.toggle("on",b===e.target));render()};
+document.getElementById("meas").onclick=e=>{if(!e.target.dataset.m)return;meas=e.target.dataset.m;document.querySelectorAll("#meas button").forEach(b=>b.classList.toggle("on",b===e.target));render()};
 document.getElementById("tfilter").onclick=e=>{
   const b=e.target.closest("button");if(!b)return;
   if(b.dataset.t==="all"){hiddenTypes.clear()}
@@ -265,27 +261,13 @@ document.getElementById("tfilter").onclick=e=>{
     if(x.dataset.t==="all")return;
     x.classList.toggle("off",x.dataset.t.split(",").every(t=>hiddenTypes.has(t)));
   });
-  saveP();
   render();
 };
 document.getElementById("mode").onclick=e=>{
-  if(e.target.id==="wknd"){hideWknd=!hideWknd;saveP();e.target.textContent=hideWknd?"Visa helger":"Dölj helger";e.target.classList.toggle("on",hideWknd);render();return}
-  if(!e.target.dataset.m)return;mode=e.target.dataset.m;saveP();document.querySelectorAll("#mode button[data-m]").forEach(b=>b.classList.toggle("on",b===e.target));render()};
-document.getElementById("who").onclick=e=>{if(!e.target.dataset.c)return;who=e.target.dataset.c;saveP();document.querySelectorAll("#who button").forEach(b=>b.classList.toggle("on",b===e.target));render()};
-(function(){
-  const sv=String(span);
-  document.querySelectorAll("#seg button, #seg2 button").forEach(b=>b.classList.toggle("on",b.dataset.w===sv));
-  document.querySelectorAll("#meas button").forEach(b=>b.classList.toggle("on",b.dataset.m===meas));
-  document.querySelectorAll("#mode button[data-m]").forEach(b=>b.classList.toggle("on",b.dataset.m===mode));
-  document.querySelectorAll("#who button").forEach(b=>b.classList.toggle("on",b.dataset.c===who));
-  const w=document.getElementById("wknd");
-  if(w){w.textContent=hideWknd?"Visa helger":"Dölj helger";w.classList.toggle("on",hideWknd);}
-  document.querySelectorAll("#tfilter button[data-t]").forEach(x=>{
-    if(x.dataset.t==="all")return;
-    x.classList.toggle("off",x.dataset.t.split(",").every(t=>hiddenTypes.has(t)));
-  });
-  render();
-})();
+  if(e.target.id==="wknd"){hideWknd=!hideWknd;e.target.textContent=hideWknd?"Visa helger":"Dölj helger";e.target.classList.toggle("on",hideWknd);render();return}
+  if(!e.target.dataset.m)return;mode=e.target.dataset.m;document.querySelectorAll("#mode button[data-m]").forEach(b=>b.classList.toggle("on",b===e.target));render()};
+document.getElementById("who").onclick=e=>{if(!e.target.dataset.c)return;who=e.target.dataset.c;document.querySelectorAll("#who button").forEach(b=>b.classList.toggle("on",b===e.target));render()};
+render();
 (function(){
   const cv=document.getElementById("stars"),cx=cv.getContext("2d");
   function draw(){
