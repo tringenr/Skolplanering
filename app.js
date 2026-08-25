@@ -60,6 +60,14 @@ function renderSettings(){
   <h2>Barn</h2>`+["Gustav","Syno"].map(kid).join("")+
   `<h2>Trösklar för veckobelastning</h2><div class="card">${th("count","Antal saker","saker")}${th("effort","Arbetsinsats","insats")}
    <button class="rst" id="threset">Återställ standardvärden</button></div>
+  <h2>Lärare och kontakt</h2>`+["Gustav","Syno"].map(k=>{
+    const rows=Object.entries(D[k].teachers).filter(([su,t])=>t).map(([su,t])=>{
+      const em=(typeof EMAILS!=="undefined")?EMAILS[t]:null;
+      return `<p style="margin:.35rem 0;font-size:.88rem;line-height:1.45">${su}: <b style="font-weight:600">${t}</b>${em?`<br><a href="mailto:${em}" style="color:var(--accent);text-decoration:none;font-size:.85rem">✉ ${em}</a>`:""}</p>`;
+    }).join("");
+    const ment=(typeof MENTORS!=="undefined"&&MENTORS[k])?`<p style="margin:.5rem 0 .1rem;font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Mentorer</p>`+MENTORS[k].map(m=>`<p style="margin:.25rem 0;font-size:.88rem"><b style="font-weight:600">${m[0]}</b><br><a href="mailto:${m[1]}" style="color:var(--accent);text-decoration:none;font-size:.85rem">✉ ${m[1]}</a></p>`).join(""):"";
+    return `<div class="card" style="margin-bottom:.6rem"><p style="margin:0 0 .3rem;font-weight:600"><span class="dot" style="background:${D[k].col}"></span>${DN(k)}</p>${ment}<p style="margin:.5rem 0 .1rem;font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Ämneslärare</p>${rows}</div>`;
+  }).join("")+`
   <h2>Källor och synk</h2>
   <div class="card" style="margin-bottom:.6rem">${["Gustav","Syno"].map(k=>`<p style="margin:.2rem 0;font-size:.85rem"><span class="dot" style="background:${D[k].col}"></span><b>${DN(k)}</b> — ${docsN(k)} planeringsdokument från lärarna · Google-kalender kopplad</p>`).join("")}
    <p class="hint" style="margin-top:.5rem">Datat uppdateras automatiskt varje natt från lärarnas dokument och barnens kalendrar.</p></div>`;

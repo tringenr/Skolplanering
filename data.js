@@ -260,3 +260,24 @@ const MISSING={
  "Gustav":["Biologi","Musik"],
  "Syno":["Bild","Fysik","Musik","Slöjd","Teknik"]
 };
+
+const EMAILS={
+"Marcus Jansson":"marcus.jansson@partille.se",
+"Anders Lindberg":"anders.lindbergh@partille.se",
+"Maria Ödmar":"maria.odmar@partille.se",
+"Anna Klevenås Kraft":"anna.kraft@partille.se",
+"Cicci Armini":"cecilia.armini@partille.se",
+"Therese Larsson":"therese.larsson@partille.se",
+"Viktor Axelsson":"viktor.axelsson@partille.se",
+"Christina Thorén":"christina.thoren@partille.se",
+"Alexander Jonsson":"alexander.jonsson@partille.se",
+"Emma J. Wedenmark":"emma.wedenmark@partille.se",
+"Mehtap Tütüncü":"mehtap.tutuncu2@partille.se",
+"Hanna Widlund":"hanna.widlund@partille.se",
+"Hannah Tollesson":"hannah.tollesson@partille.se",
+"Sara Edman":"sara.edman@partille.se",
+"Patrik Junermark":"patrik.junermark@partille.se",
+"Martin Andersson":"martin.andersson@partille.se",
+"Åsa Ehrenpohl & Hannah Tollesson":"asa.ehrenpohl@partille.se"
+};
+const MENTORS={"Gustav":[["Anders Lindberg","anders.lindbergh@partille.se"],["Anna Klevenås Kraft","anna.kraft@partille.se"]],"Syno":[["Åsa Ehrenpohl","asa.ehrenpohl@partille.se"],["Hannah Tollesson","hannah.tollesson@partille.se"]]};
