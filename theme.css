@@ -113,3 +113,8 @@ body{padding-bottom:5.5rem}
 .tabbar .ti{font-size:1.15rem;line-height:1}
 .tabbar .tl{font-size:10.5px;font-weight:700;letter-spacing:.04em}
 .tabbar button.on{color:var(--accent)}
+
+.nameinp{background:var(--card2);border:1.5px solid var(--line2);border-radius:8px;color:var(--text);font:600 .95rem var(--font-head);padding:.3rem .6rem;width:9rem}
+.thinp{width:56px;background:var(--card2);border:1.5px solid var(--line2);border-radius:8px;color:var(--text);font:500 .9rem var(--font-body);padding:.25rem .3rem;text-align:center}
+.swatch{width:28px;height:28px;border-radius:8px;border:2px solid transparent;cursor:pointer;padding:0}
+.swatch.sel{border-color:var(--text);outline:2px solid var(--bg)}
