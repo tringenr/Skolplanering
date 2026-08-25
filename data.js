@@ -178,7 +178,6 @@ ev:[
 ["2027-03-19","Svenska/SVA","NP","Nationellt prov svenska, delprov 2"],
 ["2027-03-24","Skolan","annat","MA/NO-dag"],
 ["2027-03-26","Skolan","lov","Påsklov"],
-["2027-04-13","Engelska","NP","Nationellt prov engelska"],
 ["2027-04-20","NO","NP","Nationellt prov NO"],
 ["2027-04-28","SO","NP","Nationellt prov SO, delprov 1"],
 ["2027-05-04","SO","NP","Nationellt prov SO, delprov 2"],
