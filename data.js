@@ -263,6 +263,7 @@ const MISSING={
 
 const EMAILS={
 "Marcus Jansson":"marcus.jansson@partille.se",
+"Björn Nilsson":"bjorn.nilsson@partille.se",
 "Anders Lindberg":"anders.lindbergh@partille.se",
 "Maria Ödmar":"maria.odmar@partille.se",
 "Anna Klevenås Kraft":"anna.kraft@partille.se",
