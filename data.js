@@ -63,6 +63,7 @@ ev:[
 ["2026-09-04","Matematik","läxa","Läxa 1"],
 ["2026-09-04","Franska","läxa","Läxa kap 4a: transportmedel"],
 ["2026-09-07","Skolan","utvecklingssamtal","Utvecklingssamtalsdag"],
+["2026-09-08","Skolan","annat","Fluorbehandling 11:35"],
 ["2026-09-08","Textilslöjd","muntlig","Redovisning material"],
 ["2026-09-10","Svenska","inlämning","Faktatext klar"],
 ["2026-09-10","Kemi","läxa","Läsläxa: Läsbok BLÅ till s.120"],
@@ -161,6 +162,7 @@ ev:[
 ["2026-09-29","HKK","prov","Prov: privatekonomi och konsumtion"],
 ["2026-10-02","Franska","prov","Prov kapitel 4b och 4c"],
 ["2026-10-05","Skolan","praktik","Prao hela veckan"],
+["2026-10-12","Skolan","praktik","Tarragona, måndag och tisdag"],
 ["2026-10-13","Svenska/SVA","inlämning","Läsprojekt del 1, kapitel 1–4"],
 ["2026-10-16","Matematik","prov","Prov: kapitel 1, tal","MA9"],
 ["2026-10-20","Svenska/SVA","muntlig","Boksamtal: Tatueraren i Auschwitz, grupp 1"],
@@ -249,7 +251,8 @@ const ACT=[
 ["Gustav","2026-10-19","18:30","Orkester","18:30–20:30","https://www.google.com/calendar/event?eid=dDg3MGRpbjNkZ3U1OG40dnBvYTlrajM2N29fMjAyNjEwMTlUMTYzMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
 ["Gustav","2026-10-20","17:30","Musikproduktion","17:30–18:10","https://www.google.com/calendar/event?eid=YTk0b2FpNnI0M291ZHYxbnVrYjhpaHQwcTBfMjAyNjEwMjBUMTUzMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
 ["Syno","2026-10-20","18:00","Musikal","18:00–19:30","https://www.google.com/calendar/event?eid=ZzVoNDQwM3ZqNXJtNXFsZ2JubHAxM3Rqa29fMjAyNjEwMjBUMTYwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
-["Gustav","2026-10-20","18:20","Tuba","18:20–19:00","https://www.google.com/calendar/event?eid=NHBxdTltM25nanRxaG9lZjJiZmVsdjMxZWdfMjAyNjEwMjBUMTYyMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"]];
+["Gustav","2026-10-20","18:20","Tuba","18:20–19:00","https://www.google.com/calendar/event?eid=NHBxdTltM25nanRxaG9lZjJiZmVsdjMxZWdfMjAyNjEwMjBUMTYyMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
+["Syno","2026-10-21","18:00","Teater","18:00–19:20","https://www.google.com/calendar/event?eid=ajhyYnVlYm1wa2I0bG1mM3BvMTJwdWlyZ2NfMjAyNjEwMjFUMTYwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"]];
 function pd(s){const[y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)}
 function td(){const d=new Date();d.setHours(0,0,0,0);return d}
 function iw(d){const t=new Date(d);t.setHours(0,0,0,0);t.setDate(t.getDate()+3-((t.getDay()+6)%7));const w1=new Date(t.getFullYear(),0,4);return 1+Math.round(((t-w1)/864e5-3+((w1.getDay()+6)%7))/7)}
