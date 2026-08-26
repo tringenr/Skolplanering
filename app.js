@@ -114,7 +114,7 @@ function tube(child){
   const W_=760,H=52,r0=6,pad=14;
   let x=pad+8,balls="";
   done.forEach(e=>{const r=r0+e.w*1.6;x+=r;balls+=`<circle cx="${x.toFixed(1)}" cy="26" r="${r.toFixed(1)}" fill="${c.col}" opacity="${.45+e.w*.11}"/>`;x+=r+2});
-  const mile=[["2026-10-26","Höstlov"],["2026-12-21","Jullov"],["2027-02-15","Sportlov"],["2027-06-10","Slut"]];
+  const mile=[["2026-10-26","Höstlov"],["2026-12-21","Jullov"],["2027-02-15","Sportlov"],["2027-06-10","Sommarlov"]];
   const start=pd("2026-08-17"),end=pd("2027-06-11"),rng=end-start;
   let ml="",labels="";
   mile.forEach(m=>{
