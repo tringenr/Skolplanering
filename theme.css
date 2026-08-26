@@ -131,3 +131,6 @@ body{padding-bottom:5.5rem}
 
 .pill.done{opacity:.55;text-decoration:line-through}
 .ev.done{opacity:.65}
+
+.milerow{position:relative;height:1.1rem;margin:.15rem 14px 0}
+.milelbl{position:absolute;top:0;font-size:.72rem;font-weight:500;color:var(--muted);white-space:nowrap;font-family:var(--font-body);letter-spacing:.02em}

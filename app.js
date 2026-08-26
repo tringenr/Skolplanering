@@ -111,16 +111,24 @@ function tube(child){
   const c=D[child], ev=EV.filter(e=>e.child===child&&e.w>0);
   const done=ev.filter(e=>pd(e.date)<T);
   const tot=ev.reduce((s,e)=>s+e.w,0), got=done.reduce((s,e)=>s+e.w,0);
-  const W_=760,H=64,r0=6,pad=14;
+  const W_=760,H=52,r0=6,pad=14;
   let x=pad+8,balls="";
-  done.forEach(e=>{const r=r0+e.w*1.6;x+=r;balls+=`<circle cx="${x.toFixed(1)}" cy="32" r="${r.toFixed(1)}" fill="${c.col}" opacity="${.45+e.w*.11}"/>`;x+=r+2});
-  const mile=[["2026-10-26","höstlov"],["2026-12-21","jullov"],["2027-02-15","sportlov"],["2027-06-10","slut"]];
-  let ml="";
+  done.forEach(e=>{const r=r0+e.w*1.6;x+=r;balls+=`<circle cx="${x.toFixed(1)}" cy="26" r="${r.toFixed(1)}" fill="${c.col}" opacity="${.45+e.w*.11}"/>`;x+=r+2});
+  const mile=[["2026-10-26","Höstlov"],["2026-12-21","Jullov"],["2027-02-15","Sportlov"],["2027-06-10","Slut"]];
   const start=pd("2026-08-17"),end=pd("2027-06-11"),rng=end-start;
-  mile.forEach(m=>{const p=pad+((pd(m[0])-start)/rng)*(W_-pad*2);ml+=`<line x1="${p.toFixed(0)}" y1="8" x2="${p.toFixed(0)}" y2="56" stroke="var(--line)" stroke-width="2"/><text x="${p.toFixed(0)}" y="6" text-anchor="middle" font-size="9" fill="var(--faint)">${m[1]}</text>`});
+  let ml="",labels="";
+  mile.forEach(m=>{
+    const frac=(pd(m[0])-start)/rng;
+    const p=pad+frac*(W_-pad*2);
+    ml+=`<line x1="${p.toFixed(0)}" y1="4" x2="${p.toFixed(0)}" y2="48" stroke="var(--line)" stroke-width="2"/>`;
+    const pct=(frac*100).toFixed(1);
+    const anchor=frac>0.93?"translateX(-100%)":"translateX(-50%)";
+    labels+=`<span class="milelbl" style="left:${pct}%;transform:${anchor}">${m[1]}</span>`;
+  });
   return `<div class="tube-wrap"><div class="tube-head"><span class="who"><span class="dot" style="background:${c.col}"></span>${DN(child)}</span>
   <span class="num">${done.length} avklarade · insats ${Math.round(got)} av ${Math.round(tot)}</span></div>
-  <svg viewBox="0 0 ${W_} ${H}"><rect x="${pad}" y="12" width="${W_-pad*2}" height="40" rx="20" fill="none" stroke="${c.col}" stroke-opacity=".55" stroke-width="1.5"/>${ml}${balls}</svg></div>`;
+  <svg viewBox="0 0 ${W_} ${H}"><rect x="${pad}" y="6" width="${W_-pad*2}" height="40" rx="20" fill="none" stroke="${c.col}" stroke-opacity=".55" stroke-width="1.5"/>${ml}${balls}</svg>
+  <div class="milerow">${labels}</div></div>`;
 }
 
 function weekRow(){
