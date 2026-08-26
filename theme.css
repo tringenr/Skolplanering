@@ -128,3 +128,6 @@ body{padding-bottom:5.5rem}
 .thinp{width:56px;background:var(--card2);border:1.5px solid var(--line2);border-radius:8px;color:var(--text);font:500 .9rem var(--font-body);padding:.25rem .3rem;text-align:center}
 .swatch{width:28px;height:28px;border-radius:8px;border:2px solid transparent;cursor:pointer;padding:0}
 .swatch.sel{border-color:var(--text);outline:2px solid var(--bg)}
+
+.pill.done{opacity:.55;text-decoration:line-through}
+.ev.done{opacity:.65}

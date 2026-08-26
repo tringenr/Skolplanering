@@ -1,4 +1,6 @@
 let ADJ={};try{ADJ=JSON.parse(localStorage.getItem("skolAdj")||"{}")}catch(e){}
+let DONE={};try{DONE=JSON.parse(localStorage.getItem("skolDone")||"{}")}catch(e){}
+function saveDone(){try{localStorage.setItem("skolDone",JSON.stringify(DONE))}catch(e){}}
 function saveAdj(){try{localStorage.setItem("skolAdj",JSON.stringify(ADJ))}catch(e){}}
 function baseDays(w){return w>=5?7:w>=4?5:w>=3?3:w>=2?1:0}
 function all(){const o=[];for(const k in D)D[k].ev.forEach((e,i)=>{
@@ -185,6 +187,7 @@ function detail(id){
       ${e.adj?`<button class="rst" id="rst">Återställ till standard</button>`:""}
     </div>`:""}
     ${doc?`<p style="margin:.9rem 0 0"><a href="${doc}" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-size:.85rem">Öppna lärarens planeringsdokument →</a></p>`:""}
+    ${e.baseW?`<button id="donebtn" style="display:block;width:100%;margin-top:1rem;padding:.7rem;border-radius:10px;border:1.5px solid ${DONE[id]?"var(--lov)":"var(--line2)"};background:${DONE[id]?"var(--lov)":"transparent"};color:${DONE[id]?"#fff":"var(--text)"};font-weight:600;font-size:.95rem;cursor:pointer;font-family:inherit">${DONE[id]?"✓ Klarmarkerad":"Markera klar"}</button>`:""}
   </div>`;
   document.body.appendChild(o);
   const close=()=>o.remove();
@@ -201,6 +204,7 @@ function detail(id){
   };
   if(rw){rw.oninput=apply;rd.oninput=apply;}
   const r=o.querySelector("#rst");if(r)r.onclick=()=>{delete ADJ[id];saveAdj();EV=all();close();render()};
+  const db=o.querySelector("#donebtn");if(db)db.onclick=()=>{if(DONE[id])delete DONE[id];else DONE[id]=true;saveDone();close();render()};
 }
 
 function actDetail(key){
@@ -226,10 +230,10 @@ function card(e){
   const doc=(D[e.child].docs||{})[e.subject];
   const t=D[e.child].teachers[e.subject];
   const start=e.days>0?new Date(d.getTime()-e.days*864e5):null;
-  return `<div class="ev" data-id="${e.id}" style="cursor:pointer"><div class="evtop"><div>
-    <div class="evtitle">${e.title}</div>
+  const dn=DONE[e.id];return `<div class="ev${dn?" done":""}" data-id="${e.id}" style="cursor:pointer"><div class="evtop"><div>
+    <div class="evtitle">${dn?"✓ ":""}${e.title}</div>
     <div class="evmeta"><span class="dot" style="background:${D[e.child].col}"></span>${DN(e.child)} · ${e.subject}${t?" · "+t:""}</div>
-    </div><span class="when" style="background:${COL[e.type]}">${LBL[e.type]}</span></div>
+    </div><span class="when" style="background:${dn?"var(--lov)":COL[e.type]}">${dn?"KLAR":LBL[e.type]}</span></div>
     ${matBlock(e)}
     <div class="foot"><span>${DAY[d.getDay()]} ${d.getDate()} ${MON[d.getMonth()]} · ${rel}</span>
     ${start?`<span style="color:var(--accent)">· pluggstart ${start.getDate()} ${MON[start.getMonth()]}</span>`:""}
@@ -270,7 +274,7 @@ function cal(){
       const past=d<T;
       h+=`<div class="cd ${i>4?"we":""} ${k===tk?"today":""}" style="${past?"opacity:.45":""}">
         <div class="dn"><b>${d.getDate()}</b> ${MON[d.getMonth()]}</div>`;
-      (evs[k]||[]).forEach(e=>{h+=`<button class="pill" data-id="${e.id}" style="background:${COL[e.type]}" title="${DN(e.child)} · ${e.subject}: ${e.title}">${e.subject!=="Skolan"?`<b style="font-weight:700">${DN(e.child)[0]} · ${e.subject}</b><br>`:""}${e.title}</button>`});
+      (evs[k]||[]).forEach(e=>{const dn=DONE[e.id];h+=`<button class="pill${dn?" done":""}" data-id="${e.id}" style="background:${dn?"var(--lov)":COL[e.type]}" title="${DN(e.child)} · ${e.subject}: ${e.title}">${e.subject!=="Skolan"?`<b style="font-weight:700">${DN(e.child)[0]} · ${e.subject}</b><br>`:""}${e.title}</button>`});
       (acts[k]||[]).forEach((a,j)=>{h+=`<button class="pill act" data-act="${k}:${j}">${a[2]} ${a[3]}</button>`});
       h+=`</div>`;
     }
