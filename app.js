@@ -1,9 +1,14 @@
 let ADJ={};try{ADJ=JSON.parse(localStorage.getItem("skolAdj")||"{}")}catch(e){}
 let DONE={};try{DONE=JSON.parse(localStorage.getItem("skolDone")||"{}")}catch(e){}
 function saveDone(){try{localStorage.setItem("skolDone",JSON.stringify(DONE))}catch(e){}}
+let OFF={};try{OFF=JSON.parse(localStorage.getItem("skolOff")||"{}")}catch(e){}
+function saveOff(){try{localStorage.setItem("skolOff",JSON.stringify(OFF))}catch(e){}}
+function subjOff(k,s){return Array.isArray(OFF[k])&&OFF[k].includes(s)}
+function subjList(k){const st=new Set(Object.keys(D[k].docs||{}));D[k].ev.forEach(e=>st.add(e[1]));st.delete("Skolan");st.delete("Klass");return[...st].sort((a,b)=>a.localeCompare(b,"sv"))}
 function saveAdj(){try{localStorage.setItem("skolAdj",JSON.stringify(ADJ))}catch(e){}}
 function baseDays(w){return w>=5?7:w>=4?5:w>=3?3:w>=2?1:0}
 function all(){const o=[];for(const k in D)D[k].ev.forEach((e,i)=>{
+  if(subjOff(k,e[1]))return;
   const id=k[0]+"-"+e[0]+"-"+i, bw=W[e[2]]||0, a=ADJ[id]||{};
   o.push({id,child:k,date:e[0],subject:e[1],type:e[2],title:e[3],mat:e[4],
     baseW:bw, w:a.w!==undefined?a.w:bw, days:a.d!==undefined?a.d:baseDays(bw), adj:!!(a.w!==undefined||a.d!==undefined)});
@@ -61,7 +66,7 @@ function renderSettings(){
   <div class="card" style="margin-bottom:.6rem;display:flex;align-items:center;gap:.8rem;flex-wrap:wrap"><span style="font-size:.85rem">Tema</span>
   <div class="seg thememode" style="margin:0"><button data-th="dark" class="${theme==="dark"?"on":""}">🌙 Mörkt</button><button data-th="light" class="${theme==="light"?"on":""}">☀️ Ljust</button></div></div>
   <h2>Barn</h2>`+["Gustav","Syno"].map(kid).join("")+
-  `<h2>Trösklar för veckobelastning</h2><div class="card">${th("count","Antal saker","saker")}${th("effort","Arbetsinsats","insats")}
+  `<h2>Ämnesplaneringar</h2><p class="hint" style="margin:-.1rem 0 .5rem">Stäng av ämnen som inte läses just nu — de döljs i kalender och listor och räknas inte med i veckobelastning eller läsårsröret. Slå på igen när ämnet återkommer, allt underlag finns kvar.</p>`+["Gustav","Syno"].map(k=>`<div class="card" style="margin-bottom:.6rem"><p style="margin:0 0 .45rem;font-weight:600"><span class="dot" style="background:${D[k].col}"></span>${DN(k)}</p><div style="display:flex;gap:.4rem;flex-wrap:wrap">${subjList(k).map(su=>{const off=subjOff(k,su);return `<button class="subjtoggle" data-k="${k}" data-s="${su}" title="${off?"Aktivera":"Inaktivera"} ${su}" style="padding:.32rem .75rem;border-radius:999px;font-size:.85rem;font-weight:600;cursor:pointer;font-family:inherit;border:1.5px solid ${off?"var(--line2)":D[k].col};background:${off?"transparent":`color-mix(in srgb, ${D[k].col} 18%, transparent)`};color:${off?"var(--faint)":"var(--text)"};${off?"text-decoration:line-through;opacity:.75":""}">${off?"":"✓ "}${su}</button>`}).join("")}</div>${(OFF[k]||[]).length?`<p class="hint" style="margin:.5rem 0 0">${(OFF[k]||[]).length} ämne${(OFF[k]||[]).length>1?"n":""} inaktiverat — visas och räknas inte.</p>`:``}</div>`).join("")+`<h2>Trösklar för veckobelastning</h2><div class="card">${th("count","Antal saker","saker")}${th("effort","Arbetsinsats","insats")}
    <button class="rst" id="threset">Återställ standardvärden</button></div>
   <h2>Lärare och kontakt</h2>`+["Gustav","Syno"].map(k=>{
     const open_=!!teachOpen[k];
@@ -80,6 +85,7 @@ function renderSettings(){
   <div class="card" style="margin-bottom:.6rem">${["Gustav","Syno"].map(k=>`<p style="margin:.2rem 0;font-size:.85rem"><span class="dot" style="background:${D[k].col}"></span><b>${DN(k)}</b> — ${docsN(k)} planeringsdokument från lärarna · Google-kalender kopplad</p>`).join("")}
    <p class="hint" style="margin-top:.5rem">Datat uppdateras automatiskt varje natt från lärarnas dokument och barnens kalendrar.</p></div>`;
   el.querySelectorAll(".teachtoggle").forEach(b=>b.onclick=()=>{teachOpen[b.dataset.k]=!teachOpen[b.dataset.k];renderSettings()});
+  el.querySelectorAll(".subjtoggle").forEach(b=>b.onclick=()=>{const k=b.dataset.k,su=b.dataset.s;OFF[k]=OFF[k]||[];const i=OFF[k].indexOf(su);if(i>=0)OFF[k].splice(i,1);else OFF[k].push(su);saveOff();EV=all();render()});
   el.querySelectorAll(".nameinp").forEach(i=>i.onchange=()=>{NAMES[i.dataset.k]=i.value.trim()||i.dataset.k;PREFS.names=NAMES;saveP();syncNames();render()});
   el.querySelectorAll(".swatch").forEach(b=>b.onclick=()=>{ACCENTS[b.dataset.k]=b.dataset.p;PREFS.accents=ACCENTS;saveP();applyAccents();render()});
   el.querySelectorAll(".thinp").forEach(i=>i.onchange=()=>{const v=Math.max(1,+i.value||1);TH[i.dataset.m][+i.dataset.i]=v;PREFS.th=TH;saveP();render()});
