@@ -14,7 +14,7 @@ function all(){const o=[];for(const k in D)D[k].ev.forEach((e,i)=>{
     baseW:bw, w:a.w!==undefined?a.w:bw, days:a.d!==undefined?a.d:baseDays(bw), adj:!!(a.w!==undefined||a.d!==undefined)});
 });o.sort((a,b)=>a.date.localeCompare(b.date));return o}
 let EV=all(); const T=td();
-let span=2, who="all", selWeek=null, mode="cal", meas="effort", hideWknd=false;
+let span=2, who="all", selWeek=null, mode="cal", meas="effort", hideWknd=true;
 let hiddenTypes=new Set();
 let PREFS={};try{PREFS=JSON.parse(localStorage.getItem("skolPrefs")||"{}")}catch(e){}
 if(PREFS.span!==undefined)span=PREFS.span;
