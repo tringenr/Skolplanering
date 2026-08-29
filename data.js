@@ -136,8 +136,8 @@ ev:[
 ["2027-05-12","Engelska","prov","Listening test"],
 ["2027-06-07","Skolan","annat","Yrkesmässa åk 8"],
 ["2027-06-10","Skolan","annat","Skolavslutning"]]},
-Syno:{cls:"9B",col:"var(--syno)",docs:{Matematik:"https://docs.google.com/document/d/1Gr9Q7SpN7vaw4OTc_4jDKtkbt6VtYwofsg9kSo5wKgA/edit",Kemi:"https://docs.google.com/document/d/1rRxgX9lMYLBHmVW63InQd_9SMYmQz6GEsEyAk_WsWkA/edit",Klass:"https://docs.google.com/document/d/1FzUOr1zGlQazk3cfXUmi9a89EID-nFl58jJdG93fYQE/edit",HKK:"https://docs.google.com/document/d/1wvVxH2Ibm_5yBx2sP23FkgPesiEMn2YDwIOnqjhmAIc/edit","Svenska/SVA":"https://docs.google.com/document/d/1oNm_1e5ZhaVO21i0hig2a3AlwggEO114zbxfi5jW4hA/edit",Franska:"https://docs.google.com/document/d/1cRuwd6ollN2EGao0HSaUCouRLjXWLoeMydj2savA6xw/edit",SO:"https://docs.google.com/document/d/1fYv1h1Y8Ww9tT5CMRQZsPaBFruR3wGpXCnfFPLRMW-w/edit",Biologi:"https://docs.google.com/document/d/1ZXr7tapcMCn2rcl1vivLK04vS3EpQHSNwZSNBu37F4A/edit",Idrott:"https://docs.google.com/document/d/1QgEWKDvqeGL9DiqUado5VsXJ9cqO_3dcu1FNu9QS-4A/edit"},
-teachers:{Matematik:"Mehtap Tütüncü",Kemi:"Hanna Widlund",Klass:"Åsa Ehrenpohl och Hannah Tollesson",HKK:"Hannah Tollesson","Svenska/SVA":"Hannah Tollesson",Franska:"Cicci Armini",SO:"Sara Edman",Biologi:"Patrik Junermark",Idrott:"Martin Andersson"},
+Syno:{cls:"9B",col:"var(--syno)",docs:{Matematik:"https://docs.google.com/document/d/1Gr9Q7SpN7vaw4OTc_4jDKtkbt6VtYwofsg9kSo5wKgA/edit",Kemi:"https://docs.google.com/document/d/1rRxgX9lMYLBHmVW63InQd_9SMYmQz6GEsEyAk_WsWkA/edit",Klass:"https://docs.google.com/document/d/1FzUOr1zGlQazk3cfXUmi9a89EID-nFl58jJdG93fYQE/edit",HKK:"https://docs.google.com/document/d/1wvVxH2Ibm_5yBx2sP23FkgPesiEMn2YDwIOnqjhmAIc/edit","Svenska/SVA":"https://docs.google.com/document/d/1oNm_1e5ZhaVO21i0hig2a3AlwggEO114zbxfi5jW4hA/edit",Franska:"https://docs.google.com/document/d/1cRuwd6ollN2EGao0HSaUCouRLjXWLoeMydj2savA6xw/edit",SO:"https://docs.google.com/document/d/1fYv1h1Y8Ww9tT5CMRQZsPaBFruR3wGpXCnfFPLRMW-w/edit",Biologi:"https://docs.google.com/document/d/1ZXr7tapcMCn2rcl1vivLK04vS3EpQHSNwZSNBu37F4A/edit",Idrott:"https://docs.google.com/document/d/1QgEWKDvqeGL9DiqUado5VsXJ9cqO_3dcu1FNu9QS-4A/edit",Bild:"https://docs.google.com/document/d/1rzIwRodF1y4a5GDKRqPCnFlqFLfrSf6bRKm_TDQzbF8/edit"},
+teachers:{Matematik:"Mehtap Tütüncü",Kemi:"Hanna Widlund",Klass:"Åsa Ehrenpohl och Hannah Tollesson",HKK:"Hannah Tollesson","Svenska/SVA":"Hannah Tollesson",Franska:"Cicci Armini",SO:"Sara Edman",Biologi:"Patrik Junermark",Idrott:"Martin Andersson",Bild:"Åsa Ehrenpohl"},
 ev:[
 ["2026-08-24","Klass","annat","Börja söka praktikplatser"],
 ["2026-08-25","Klass","annat","Gymnasieinfo från SYV 10:15"],
@@ -261,7 +261,7 @@ function wkKey(d){const t=new Date(d);t.setDate(t.getDate()-((t.getDay()+6)%7));
 const SUBJECT_CANON=["Bild","Biologi","Engelska","Fysik","HKK","Idrott","Kemi","Matematik","Moderna språk","Musik","SO","Slöjd","Svenska","Teknik"];
 const MISSING={
  "Gustav":["Biologi","Musik"],
- "Syno":["Bild","Fysik","Musik","Slöjd","Teknik"]
+ "Syno":["Fysik","Musik","Slöjd","Teknik"]
 };
 
 const EMAILS={
