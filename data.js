@@ -201,7 +201,6 @@ ev:[
 ["2027-05-14","Matematik","NP","Nationellt prov matematik, delprov 2"]]}};
 
 const ACT=[
-["Gustav","2026-08-27","17:30","Tuba ws vid pingisbordet","17:30–19:00","https://www.google.com/calendar/event?eid=MnE3MnI4ZzQ3aXVyczJlZmJyaHY0bWNlMXQgcXRxc3ZtOTBpdWFicjA5ZnZwNDF0aHU0MWNAZw"],
 ["Syno","2026-08-31","17:00","Planera skolarbete","17:00–18:00","https://www.google.com/calendar/event?eid=OWhzcDRsM21hanRrbzFtcmlrNDBhZzY4MTRfMjAyNjA4MzFUMTUwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
 ["Gustav","2026-08-31","18:30","Orkester","18:30–20:30","https://www.google.com/calendar/event?eid=dDg3MGRpbjNkZ3U1OG40dnBvYTlrajM2N29fMjAyNjA4MzFUMTYzMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
 ["Gustav","2026-09-01","17:30","Musikproduktion","17:30–18:10","https://www.google.com/calendar/event?eid=YTk0b2FpNnI0M291ZHYxbnVrYjhpaHQwcTBfMjAyNjA5MDFUMTUzMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
