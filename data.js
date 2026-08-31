@@ -34,7 +34,7 @@ const MATLIB={
 "S|2026-09-25|Kemi":{desc:"Atomer, joner, bindningar, salter, analysmetoder",nPages:28,nSheets:8,nFilms:11,nWeeks:6,links:[["Provplan med sidhänvisningar","https://docs.google.com/document/d/1SkYJaZZLZ9vZuI2uCULiEAO95PjSi6llmy_qGkb0dws/edit"],["Övning grundläggande begrepp","https://docs.google.com/document/d/1Dhisz-NPXhpZNlYF8r4lDm0D-ncDUvYhJlzdeNVcCck/edit"],["Övning joner 2","https://docs.google.com/document/d/1zPVjZuoPJoHJeAjlCI8GK7KVHDZfBlb0XVl4Gj_9Lrw/edit"],["Film: Bindningar","https://sli.se/apps/sli/prodinfo.php?db=3&article=V4576"],["Balansera reaktioner (simulering)","https://phet.colorado.edu/in/simulations/balancing-chemical-equations"]]},
 "S|2026-11-13|Kemi":{desc:"Elektrokemi: redox, korrosion, elektrolys, batterier, miljö",nPages:22,nSheets:6,nFilms:8,nWeeks:5,links:[["Provplan med sidhänvisningar","https://docs.google.com/document/d/1JuzSKP2awjI5UXoJD1-SGiGOhiH9LPSDdXUdak3UAYs/edit"],["Provplan + instuderingsfrågor","https://docs.google.com/document/d/1Aiar7ZYrRGzw4cB45vnh_YUfLxpnKhEBMdalro-boxk/edit"],["Elektrokemi ur Kemi Direkt (PDF)","https://drive.google.com/file/d/1kfo6OwruAQuy5gjYLr4uuxp9TPHM6zO0/view"],["Frågor elektrokemi","https://docs.google.com/document/d/16dr2yRZqeyNuHQQKTt6ri2Nk6LjJb_tvxa4DofdIdp8/edit"],["Film: elektrokemi","https://www.youtube.com/watch?v=QY-L8JLjQC4"]]},
 "S|2026-09-15|HKK":{desc:"Eget recept inom budget med kostnadsberäkning",nPages:0,nSheets:1,nFilms:0,nWeeks:2,links:[["Uppgift: Budgetkocken","https://docs.google.com/document/d/12AGcs1Dwlur0ePCwVZ8dr1fmqSc2KSBH-8WXveBSNF8/edit"]]},
-"S|2026-09-29|HKK":{desc:"Privatekonomi: inkomster, ränta, försäkringar, konsumenträtt",nPages:36,nSheets:8,nFilms:2,nWeeks:6,links:[["Genomgång privatekonomi, del 1–4","https://docs.google.com/presentation/d/1s4pm4yoQLuXTVaOidej1GdaW6V_5raYlHLCiReXFd8E/edit"],["Uppgift: Betala en faktura","https://docs.google.com/document/d/1OLLBLUpJxu5kFFxUXf5-AjYgSmmy97acuhkCHCe2s7Y/edit"],["Uppgift: Försäkringsdetektiven","https://docs.google.com/document/d/1NBQ7qJvdYqOzfHIG00ufLqrUo1yeLyzn4noaoMkWLew/edit"],["Uppgift: Dina rättigheter som konsument","https://docs.google.com/document/d/13eMNdpHUqtcjrDI93E22teJLTk36tnG2yASePm3lMPo/edit"]]},
+"S|2026-10-06|HKK":{desc:"Privatekonomi: inkomster, ränta, försäkringar, konsumenträtt",nPages:36,nSheets:8,nFilms:2,nWeeks:6,links:[["Genomgång privatekonomi, del 1–4","https://docs.google.com/presentation/d/1s4pm4yoQLuXTVaOidej1GdaW6V_5raYlHLCiReXFd8E/edit"],["Uppgift: Betala en faktura","https://docs.google.com/document/d/1OLLBLUpJxu5kFFxUXf5-AjYgSmmy97acuhkCHCe2s7Y/edit"],["Uppgift: Försäkringsdetektiven","https://docs.google.com/document/d/1NBQ7qJvdYqOzfHIG00ufLqrUo1yeLyzn4noaoMkWLew/edit"],["Uppgift: Dina rättigheter som konsument","https://docs.google.com/document/d/13eMNdpHUqtcjrDI93E22teJLTk36tnG2yASePm3lMPo/edit"]]},
 "S|2026-09-18|Svenska/SVA":{desc:"Sammanfattning och referat med källhänvisning",nPages:9,nSheets:2,nFilms:3,nWeeks:4,links:[["Häfte: Sammanfattning & referat, s. 147–155","https://drive.google.com/file/d/10uQNNvNwgyiEQvI-dkUtsBQvotG--UaM/view"],["Genomgång: referat och källhänvisning","https://docs.google.com/presentation/d/1wtvywMYXtjBJp58zbGTlvamJxZsHjZZNgZOfa_Jchdw/edit"],["Film: Orka plugga – att skriva referat","https://urskola.se/Produkter/197513-Orka-plugga-Att-skriva-referat"],["Film: Källor & referatmarkörer","https://www.youtube.com/watch?v=EFueb5egwUo"]]},
 "S|2026-10-13|Svenska/SVA":{desc:"Tatueraren i Auschwitz kap 1–4 med frågor",nPages:59,nSheets:2,nFilms:1,nWeeks:3,links:[["Häfte: Tatueraren i Auschwitz","https://drive.google.com/file/d/1-rI0OYFpXELqnSGKJ12DRQvKIiylalvA/view"],["Frågor till läsprojektet","https://docs.google.com/document/d/1GRzwkIFbrauJtpCKFyls3pNKL2xTeo7_9afepKvnjRQ/edit"],["Film: möte med Lale Sokolov","https://www.youtube.com/watch?v=Wz2L9vL63mI"]]},
 "S|2026-10-20|Svenska/SVA":{desc:"Boksamtal kap 5–13, förberett i grupp",nPages:69,nSheets:2,nFilms:0,nWeeks:2,links:[["Uppgift: Boksamtal","https://docs.google.com/document/d/1eFVrcFceFWHP2NLn5TQR0O_sxUVcQs_G1nWWJcsmfLA/edit"],["Frågor till läsprojektet","https://docs.google.com/document/d/1GRzwkIFbrauJtpCKFyls3pNKL2xTeo7_9afepKvnjRQ/edit"]]},
@@ -75,6 +75,12 @@ ev:[
 ["2026-09-21","Engelska","prov","Listening test – news"],
 ["2026-09-22","Skolan","annat","Orienteringsdag"],
 ["2026-09-24","Skolan","studiedag","Studiedag"],
+["2026-09-30","Skolan","annat","Unikum-uppdatering"],
+["2026-10-02","Skolan","annat","Uppsamlingsdag"],
+["2026-10-19","Skolan","annat","Klassråd"],
+["2026-11-23","Skolan","annat","Klassråd"],
+["2026-11-24","Skolan","annat","Unikum-uppdatering"],
+["2026-11-25","Skolan","annat","Uppsamlingsdag"],
 ["2026-09-24","Kemi","läxa","Läsläxa till s.200 + öva inför prov"],
 ["2026-09-25","Matematik","läxa","Läxa 4"],
 ["2026-09-25","Franska","läxa","Läxa kap 1a: text, glosor och grammatik"],
@@ -157,9 +163,13 @@ ev:[
 ["2026-09-22","Skolan","annat","Orienteringsdag"],
 ["2026-09-23","Biologi","prov","Prov: genetik"],
 ["2026-09-24","Skolan","studiedag","Studiedag och föräldramöte"],
+["2026-10-02","Skolan","annat","Uppsamlingsdag"],
+["2026-11-24","Skolan","annat","Unikumuppdatering"],
+["2026-11-25","Skolan","annat","Uppsamlingsdag"],
+["2026-12-11","Skolan","annat","Betygen sätts"],
 ["2026-09-25","Kemi","prov","Teoretiskt prov: atomer, joner, bindningar"],
 ["2026-09-28","Matematik","diagnos","Diagnos: kapitel 1, tal"],
-["2026-09-29","HKK","prov","Prov: privatekonomi och konsumtion"],
+["2026-10-06","HKK","prov","Prov: privatekonomi och konsumtion"],
 ["2026-10-02","Franska","prov","Prov kapitel 4b och 4c"],
 ["2026-10-05","Skolan","praktik","Prao hela veckan"],
 ["2026-10-12","Skolan","praktik","Tarragona, måndag och tisdag"],
@@ -201,8 +211,6 @@ ev:[
 ["2027-05-14","Matematik","NP","Nationellt prov matematik, delprov 2"]]}};
 
 const ACT=[
-["Syno","2026-08-31","17:00","Planera skolarbete","17:00–18:00","https://www.google.com/calendar/event?eid=OWhzcDRsM21hanRrbzFtcmlrNDBhZzY4MTRfMjAyNjA4MzFUMTUwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
-["Gustav","2026-08-31","18:30","Orkester","18:30–20:30","https://www.google.com/calendar/event?eid=dDg3MGRpbjNkZ3U1OG40dnBvYTlrajM2N29fMjAyNjA4MzFUMTYzMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
 ["Gustav","2026-09-01","17:30","Musikproduktion","17:30–18:10","https://www.google.com/calendar/event?eid=YTk0b2FpNnI0M291ZHYxbnVrYjhpaHQwcTBfMjAyNjA5MDFUMTUzMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
 ["Syno","2026-09-01","18:00","Musikal","18:00–19:30","https://www.google.com/calendar/event?eid=ZzVoNDQwM3ZqNXJtNXFsZ2JubHAxM3Rqa29fMjAyNjA5MDFUMTYwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
 ["Gustav","2026-09-01","18:15","Tuba","18:15–18:55","https://www.google.com/calendar/event?eid=NHBxdTltM25nanRxaG9lZjJiZmVsdjMxZWdfMjAyNjA5MDFUMTYyMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
@@ -251,7 +259,9 @@ const ACT=[
 ["Gustav","2026-10-20","17:30","Musikproduktion","17:30–18:10","https://www.google.com/calendar/event?eid=YTk0b2FpNnI0M291ZHYxbnVrYjhpaHQwcTBfMjAyNjEwMjBUMTUzMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
 ["Syno","2026-10-20","18:00","Musikal","18:00–19:30","https://www.google.com/calendar/event?eid=ZzVoNDQwM3ZqNXJtNXFsZ2JubHAxM3Rqa29fMjAyNjEwMjBUMTYwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
 ["Gustav","2026-10-20","18:20","Tuba","18:20–19:00","https://www.google.com/calendar/event?eid=NHBxdTltM25nanRxaG9lZjJiZmVsdjMxZWdfMjAyNjEwMjBUMTYyMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
-["Syno","2026-10-21","18:00","Teater","18:00–19:20","https://www.google.com/calendar/event?eid=ajhyYnVlYm1wa2I0bG1mM3BvMTJwdWlyZ2NfMjAyNjEwMjFUMTYwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"]];
+["Syno","2026-10-21","18:00","Teater","18:00–19:20","https://www.google.com/calendar/event?eid=ajhyYnVlYm1wa2I0bG1mM3BvMTJwdWlyZ2NfMjAyNjEwMjFUMTYwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
+["Syno","2026-10-26","17:00","Planera skolarbete","17:00–18:00","https://www.google.com/calendar/event?eid=OWhzcDRsM21hanRrbzFtcmlrNDBhZzY4MTRfMjAyNjEwMjZUMTYwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
+["Gustav","2026-10-26","18:30","Orkester","18:30–20:30","https://www.google.com/calendar/event?eid=dDg3MGRpbjNkZ3U1OG40dnBvYTlrajM2N29fMjAyNjEwMjZUMTczMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"]];
 function pd(s){const[y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)}
 function td(){const d=new Date();d.setHours(0,0,0,0);return d}
 function iw(d){const t=new Date(d);t.setHours(0,0,0,0);t.setDate(t.getDate()+3-((t.getDay()+6)%7));const w1=new Date(t.getFullYear(),0,4);return 1+Math.round(((t-w1)/864e5-3+((w1.getDay()+6)%7))/7)}
