@@ -211,10 +211,6 @@ ev:[
 ["2027-05-14","Matematik","NP","Nationellt prov matematik, delprov 2"]]}};
 
 const ACT=[
-["Gustav","2026-09-01","17:30","Musikproduktion","17:30–18:10","https://www.google.com/calendar/event?eid=YTk0b2FpNnI0M291ZHYxbnVrYjhpaHQwcTBfMjAyNjA5MDFUMTUzMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
-["Syno","2026-09-01","18:00","Musikal","18:00–19:30","https://www.google.com/calendar/event?eid=ZzVoNDQwM3ZqNXJtNXFsZ2JubHAxM3Rqa29fMjAyNjA5MDFUMTYwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
-["Gustav","2026-09-01","18:15","Tuba","18:15–18:55","https://www.google.com/calendar/event?eid=NHBxdTltM25nanRxaG9lZjJiZmVsdjMxZWdfMjAyNjA5MDFUMTYyMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
-["Gustav","2026-09-01","20:00","Väga Gustav","20:00–21:00","https://www.google.com/calendar/event?eid=N3R1ZXBoMWFrb2JnNm1lNnNpZGd0YnRpMThfMjAyNjA5MDFUMTgwMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
 ["Syno","2026-09-02","18:00","Teater","18:00–19:20","https://www.google.com/calendar/event?eid=ajhyYnVlYm1wa2I0bG1mM3BvMTJwdWlyZ2NfMjAyNjA5MDJUMTYwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
 ["Syno","2026-09-07","17:00","Planera skolarbete","17:00–18:00","https://www.google.com/calendar/event?eid=OWhzcDRsM21hanRrbzFtcmlrNDBhZzY4MTRfMjAyNjA5MDdUMTUwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
 ["Gustav","2026-09-07","18:30","Orkester","18:30–20:30","https://www.google.com/calendar/event?eid=dDg3MGRpbjNkZ3U1OG40dnBvYTlrajM2N29fMjAyNjA5MDdUMTYzMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
@@ -261,7 +257,11 @@ const ACT=[
 ["Gustav","2026-10-20","18:20","Tuba","18:20–19:00","https://www.google.com/calendar/event?eid=NHBxdTltM25nanRxaG9lZjJiZmVsdjMxZWdfMjAyNjEwMjBUMTYyMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
 ["Syno","2026-10-21","18:00","Teater","18:00–19:20","https://www.google.com/calendar/event?eid=ajhyYnVlYm1wa2I0bG1mM3BvMTJwdWlyZ2NfMjAyNjEwMjFUMTYwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
 ["Syno","2026-10-26","17:00","Planera skolarbete","17:00–18:00","https://www.google.com/calendar/event?eid=OWhzcDRsM21hanRrbzFtcmlrNDBhZzY4MTRfMjAyNjEwMjZUMTYwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
-["Gustav","2026-10-26","18:30","Orkester","18:30–20:30","https://www.google.com/calendar/event?eid=dDg3MGRpbjNkZ3U1OG40dnBvYTlrajM2N29fMjAyNjEwMjZUMTczMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"]];
+["Gustav","2026-10-26","18:30","Orkester","18:30–20:30","https://www.google.com/calendar/event?eid=dDg3MGRpbjNkZ3U1OG40dnBvYTlrajM2N29fMjAyNjEwMjZUMTczMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
+["Gustav","2026-10-27","17:30","Musikproduktion","17:30–18:10","https://www.google.com/calendar/event?eid=YTk0b2FpNnI0M291ZHYxbnVrYjhpaHQwcTBfMjAyNjEwMjdUMTYzMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
+["Gustav","2026-10-27","18:20","Tuba","18:20–19:00","https://www.google.com/calendar/event?eid=NHBxdTltM25nanRxaG9lZjJiZmVsdjMxZWdfMjAyNjEwMjdUMTcyMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
+["Syno","2026-10-27","18:00","Musikal","18:00–19:30","https://www.google.com/calendar/event?eid=ZzVoNDQwM3ZqNXJtNXFsZ2JubHAxM3Rqa29fMjAyNjEwMjdUMTcwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
+["Syno","2026-10-28","18:00","Teater","18:00–19:20","https://www.google.com/calendar/event?eid=ajhyYnVlYm1wa2I0bG1mM3BvMTJwdWlyZ2NfMjAyNjEwMjhUMTcwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"]];
 function pd(s){const[y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)}
 function td(){const d=new Date();d.setHours(0,0,0,0);return d}
 function iw(d){const t=new Date(d);t.setHours(0,0,0,0);t.setDate(t.getDate()+3-((t.getDay()+6)%7));const w1=new Date(t.getFullYear(),0,4);return 1+Math.round(((t-w1)/864e5-3+((w1.getDay()+6)%7))/7)}
