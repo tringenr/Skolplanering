@@ -64,6 +64,7 @@ ev:[
 ["2026-09-04","Franska","läxa","Läxa kap 4a: transportmedel"],
 ["2026-09-07","Skolan","utvecklingssamtal","Utvecklingssamtalsdag"],
 ["2026-09-08","Skolan","annat","Fluorbehandling 11:35"],
+["2026-09-08","Svenska","läxa","Läxa: se film"],
 ["2026-09-08","Textilslöjd","muntlig","Redovisning material"],
 ["2026-09-10","Svenska","inlämning","Faktatext klar"],
 ["2026-09-10","Kemi","läxa","Läsläxa: Läsbok BLÅ till s.120"],
@@ -211,7 +212,6 @@ ev:[
 ["2027-05-14","Matematik","NP","Nationellt prov matematik, delprov 2"]]}};
 
 const ACT=[
-["Syno","2026-09-02","18:00","Teater","18:00–19:20","https://www.google.com/calendar/event?eid=ajhyYnVlYm1wa2I0bG1mM3BvMTJwdWlyZ2NfMjAyNjA5MDJUMTYwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
 ["Syno","2026-09-07","17:00","Planera skolarbete","17:00–18:00","https://www.google.com/calendar/event?eid=OWhzcDRsM21hanRrbzFtcmlrNDBhZzY4MTRfMjAyNjA5MDdUMTUwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
 ["Gustav","2026-09-07","18:30","Orkester","18:30–20:30","https://www.google.com/calendar/event?eid=dDg3MGRpbjNkZ3U1OG40dnBvYTlrajM2N29fMjAyNjA5MDdUMTYzMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
 ["Gustav","2026-09-08","17:30","Musikproduktion","17:30–18:10","https://www.google.com/calendar/event?eid=YTk0b2FpNnI0M291ZHYxbnVrYjhpaHQwcTBfMjAyNjA5MDhUMTUzMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
