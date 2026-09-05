@@ -158,6 +158,7 @@ ev:[
 ["2026-09-01","HKK","diagnos","Läxförhör: begrepp privatekonomi"],
 ["2026-09-03","SO","annat","Skolval 13:55"],
 ["2026-09-07","Skolan","utvecklingssamtal","Utvecklingssamtalsdag"],
+["2026-09-07","SO","läxa","Hemuppgift: se Rapports huvudsändning, anteckna om valet och ekonomi"],
 ["2026-09-08","HKK","diagnos","Läxförhör: försäkringar"],
 ["2026-09-09","Kemi","diagnos","Läxförhör: kemibegrepp"],
 ["2026-09-11","Skolan","annat","Lexbyjoggen"],
@@ -270,7 +271,8 @@ const ACT=[
 ["Gustav","2026-10-27","17:30","Musikproduktion","17:30–18:10","https://www.google.com/calendar/event?eid=YTk0b2FpNnI0M291ZHYxbnVrYjhpaHQwcTBfMjAyNjEwMjdUMTYzMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
 ["Gustav","2026-10-27","18:20","Tuba","18:20–19:00","https://www.google.com/calendar/event?eid=NHBxdTltM25nanRxaG9lZjJiZmVsdjMxZWdfMjAyNjEwMjdUMTcyMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
 ["Syno","2026-10-27","18:00","Musikal","18:00–19:30","https://www.google.com/calendar/event?eid=ZzVoNDQwM3ZqNXJtNXFsZ2JubHAxM3Rqa29fMjAyNjEwMjdUMTcwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
-["Syno","2026-10-28","18:00","Teater","18:00–19:20","https://www.google.com/calendar/event?eid=ajhyYnVlYm1wa2I0bG1mM3BvMTJwdWlyZ2NfMjAyNjEwMjhUMTcwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"]];
+["Syno","2026-10-28","18:00","Teater","18:00–19:20","https://www.google.com/calendar/event?eid=ajhyYnVlYm1wa2I0bG1mM3BvMTJwdWlyZ2NfMjAyNjEwMjhUMTcwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
+["Gustav","2026-11-01","20:00","Väga Gustav","20:00–21:00","https://www.google.com/calendar/event?eid=N3R1ZXBoMWFrb2JnNm1lNnNpZGd0YnRpMThfMjAyNjExMDFUMTkwMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"]];
 function pd(s){const[y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)}
 function td(){const d=new Date();d.setHours(0,0,0,0);return d}
 function iw(d){const t=new Date(d);t.setHours(0,0,0,0);t.setDate(t.getDate()+3-((t.getDay()+6)%7));const w1=new Date(t.getFullYear(),0,4);return 1+Math.round(((t-w1)/864e5-3+((w1.getDay()+6)%7))/7)}
