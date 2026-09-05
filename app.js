@@ -6,6 +6,13 @@ function saveOff(){try{localStorage.setItem("skolOff",JSON.stringify(OFF))}catch
 function subjOff(k,s){return Array.isArray(OFF[k])&&OFF[k].includes(s)}
 function subjList(k){const st=new Set(Object.keys(D[k].docs||{}));D[k].ev.forEach(e=>st.add(e[1]));st.delete("Skolan");st.delete("Klass");return[...st].sort((a,b)=>a.localeCompare(b,"sv"))}
 function saveAdj(){try{localStorage.setItem("skolAdj",JSON.stringify(ADJ))}catch(e){}}
+const ALARM_DEF={on:true,time:"17:00",lead:{"läxa":2,"diagnos":2,"inlämning":4,"prov":4,"muntlig":4,"NP":4}};
+let ALARM=JSON.parse(JSON.stringify(ALARM_DEF));try{const a=JSON.parse(localStorage.getItem("skolAlarm")||"{}");if(a.on!==undefined)ALARM.on=!!a.on;if(a.time)ALARM.time=a.time;Object.assign(ALARM.lead,a.lead||{})}catch(e){}
+function saveAlarm(){try{localStorage.setItem("skolAlarm",JSON.stringify(ALARM))}catch(e){}}
+function alarmFor(e){if(!ALARM.on||DONE[e.id])return null;const n=ALARM.lead[e.type];if(n===undefined)return null;const d=pd(e.date);d.setDate(d.getDate()-n);return{date:iso(d),d,n}}
+function gcalUrl(e,a){const d=pd(e.date),[hh,mm]=ALARM.time.split(":").map(Number);const s0=new Date(a.d);s0.setHours(hh,mm,0,0);const s1=new Date(s0.getTime()+30*6e4);const f=x=>`${x.getFullYear()}${String(x.getMonth()+1).padStart(2,"0")}${String(x.getDate()).padStart(2,"0")}T${String(x.getHours()).padStart(2,"0")}${String(x.getMinutes()).padStart(2,"0")}00`;
+  const text=`🔔 ${DN(e.child)}: plugga ${e.subject} – ${LBL[e.type].toLowerCase()} ${DAY[d.getDay()].slice(0,3)} ${d.getDate()} ${MON[d.getMonth()]}`;const doc=(D[e.child].docs||{})[e.subject]||"";
+  return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(text)}&dates=${f(s0)}/${f(s1)}&details=${encodeURIComponent(e.title+(doc?"\n"+doc:""))}`}
 function baseDays(w){return w>=5?7:w>=4?5:w>=3?3:w>=2?1:0}
 function all(){const o=[];for(const k in D)D[k].ev.forEach((e,i)=>{
   if(subjOff(k,e[1]))return;
@@ -66,7 +73,13 @@ function renderSettings(){
   <div class="card" style="margin-bottom:.6rem;display:flex;align-items:center;gap:.8rem;flex-wrap:wrap"><span style="font-size:.85rem">Tema</span>
   <div class="seg thememode" style="margin:0"><button data-th="dark" class="${theme==="dark"?"on":""}">🌙 Mörkt</button><button data-th="light" class="${theme==="light"?"on":""}">☀️ Ljust</button></div></div>
   <h2>Barn</h2>`+["Gustav","Syno"].map(kid).join("")+
-  `<h2>Ämnesplaneringar</h2><p class="hint" style="margin:-.1rem 0 .5rem">Stäng av ämnen som inte läses just nu — de döljs i kalender och listor och räknas inte med i veckobelastning eller läsårsröret. Slå på igen när ämnet återkommer, allt underlag finns kvar.</p>`+["Gustav","Syno"].map(k=>`<div class="card" style="margin-bottom:.6rem"><p style="margin:0 0 .45rem;font-weight:600"><span class="dot" style="background:${D[k].col}"></span>${DN(k)}</p><div style="display:flex;gap:.4rem;flex-wrap:wrap">${subjList(k).map(su=>{const off=subjOff(k,su);return `<button class="subjtoggle" data-k="${k}" data-s="${su}" title="${off?"Aktivera":"Inaktivera"} ${su}" style="padding:.32rem .75rem;border-radius:999px;font-size:.85rem;font-weight:600;cursor:pointer;font-family:inherit;border:1.5px solid ${off?"var(--line2)":D[k].col};background:${off?"transparent":`color-mix(in srgb, ${D[k].col} 18%, transparent)`};color:${off?"var(--faint)":"var(--text)"};${off?"text-decoration:line-through;opacity:.75":""}">${off?"":"✓ "}${su}</button>`}).join("")}</div>${(OFF[k]||[]).length?`<p class="hint" style="margin:.5rem 0 0">${(OFF[k]||[]).length} ämne${(OFF[k]||[]).length>1?"n":""} inaktiverat — visas och räknas inte.</p>`:``}</div>`).join("")+`<h2>Trösklar för veckobelastning</h2><div class="card">${th("count","Antal saker","saker")}${th("effort","Arbetsinsats","insats")}
+  `<h2>Ämnesplaneringar</h2><p class="hint" style="margin:-.1rem 0 .5rem">Stäng av ämnen som inte läses just nu — de döljs i kalender och listor och räknas inte med i veckobelastning eller läsårsröret. Slå på igen när ämnet återkommer, allt underlag finns kvar.</p>`+["Gustav","Syno"].map(k=>`<div class="card" style="margin-bottom:.6rem"><p style="margin:0 0 .45rem;font-weight:600"><span class="dot" style="background:${D[k].col}"></span>${DN(k)}</p><div style="display:flex;gap:.4rem;flex-wrap:wrap">${subjList(k).map(su=>{const off=subjOff(k,su);return `<button class="subjtoggle" data-k="${k}" data-s="${su}" title="${off?"Aktivera":"Inaktivera"} ${su}" style="padding:.32rem .75rem;border-radius:999px;font-size:.85rem;font-weight:600;cursor:pointer;font-family:inherit;border:1.5px solid ${off?"var(--line2)":D[k].col};background:${off?"transparent":`color-mix(in srgb, ${D[k].col} 18%, transparent)`};color:${off?"var(--faint)":"var(--text)"};${off?"text-decoration:line-through;opacity:.75":""}">${off?"":"✓ "}${su}</button>`}).join("")}</div>${(OFF[k]||[]).length?`<p class="hint" style="margin:.5rem 0 0">${(OFF[k]||[]).length} ämne${(OFF[k]||[]).length>1?"n":""} inaktiverat — visas och räknas inte.</p>`:``}</div>`).join("")+`<h2>Larm</h2><div class="card" style="margin-bottom:.6rem">
+   <label class="swrow"><span><b style="font-weight:600">Larm innan uppgifter</b><br><span class="hint" style="margin:0">Påminnelse kvällen kl ${ALARM.time} ett antal kvällar innan. Visas som 🔔 i kalendern och kan läggas i Google Kalender från uppgiftens kort. Larmen i kalendrarna Gustav och Syno följer samma regler.</span></span><span class="sw ${ALARM.on?"on":""}" id="alarmsw" role="switch" aria-checked="${ALARM.on}"><i></i></span></label>
+   <div style="${ALARM.on?"":"opacity:.45;pointer-events:none"}">
+   ${[["läxa","Läxa / förhör",["läxa","diagnos"]],["prov","Prov / muntligt / NP",["prov","muntlig","NP"]],["inlämning","Inlämning",["inlämning"]]].map(([k,l,ks])=>`<div style="display:flex;align-items:center;gap:.5rem;margin-top:.5rem;font-size:.85rem"><span style="min-width:10rem">${l}</span><input type="number" class="alinp" data-ks="${ks.join(",")}" value="${ALARM.lead[k]}" min="0" max="14"> <span style="color:var(--faint)">kvällar innan</span></div>`).join("")}
+   <div style="display:flex;align-items:center;gap:.5rem;margin-top:.5rem;font-size:.85rem"><span style="min-width:10rem">Klockslag</span><input type="time" class="thinp" id="altime" value="${ALARM.time}" style="width:auto"></div>
+   <button class="rst" id="alreset">Återställ standard (läxa 2 · prov 4 · inlämning 4 · kl 17)</button></div></div>
+  <h2>Trösklar för veckobelastning</h2><div class="card">${th("count","Antal saker","saker")}${th("effort","Arbetsinsats","insats")}
    <button class="rst" id="threset">Återställ standardvärden</button></div>
   <h2>Lärare och kontakt</h2>`+["Gustav","Syno"].map(k=>{
     const open_=!!teachOpen[k];
@@ -90,6 +103,10 @@ function renderSettings(){
   el.querySelectorAll(".swatch").forEach(b=>b.onclick=()=>{ACCENTS[b.dataset.k]=b.dataset.p;PREFS.accents=ACCENTS;saveP();applyAccents();render()});
   el.querySelectorAll(".thinp").forEach(i=>i.onchange=()=>{const v=Math.max(1,+i.value||1);TH[i.dataset.m][+i.dataset.i]=v;PREFS.th=TH;saveP();render()});
   el.querySelectorAll(".thememode button").forEach(b=>b.onclick=()=>{theme=b.dataset.th;PREFS.theme=theme;saveP();applyTheme();});
+  const sw=document.getElementById("alarmsw");if(sw)sw.onclick=()=>{ALARM.on=!ALARM.on;saveAlarm();render()};
+  el.querySelectorAll(".alinp").forEach(i=>i.onchange=()=>{const v=Math.max(0,Math.min(14,+i.value||0));i.dataset.ks.split(",").forEach(t=>ALARM.lead[t]=v);saveAlarm();render()});
+  const at=document.getElementById("altime");if(at)at.onchange=()=>{if(/^\d\d:\d\d$/.test(at.value)){ALARM.time=at.value;saveAlarm();render()}};
+  const ar=document.getElementById("alreset");if(ar)ar.onclick=()=>{ALARM=JSON.parse(JSON.stringify(ALARM_DEF));saveAlarm();render()};
   const rb=document.getElementById("threset");if(rb)rb.onclick=()=>{TH.count=[2,4,7];TH.effort=[3,6,10];PREFS.th=TH;saveP();render()};
 }
 function syncNames(){
@@ -200,6 +217,7 @@ function detail(id){
       <label>Hur många dagar innan behöver man jobba? Pluggstart blir <b id="vs">${st.getDate()} ${MON[st.getMonth()]}</b>.</label>
       ${e.adj?`<button class="rst" id="rst">Återställ till standard</button>`:""}
     </div>`:""}
+    ${(()=>{const a=alarmFor(e);if(!a)return "";return `<p style="margin:.9rem 0 0;font-size:.85rem">🔔 Larm ${DAY[a.d.getDay()]} ${a.d.getDate()} ${MON[a.d.getMonth()]} kl ${ALARM.time} (${a.n} kvällar innan) · <a href="${gcalUrl(e,a)}" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none">Lägg i Google Kalender →</a></p>`})()}
     ${doc?`<p style="margin:.9rem 0 0"><a href="${doc}" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-size:.85rem">Öppna lärarens planeringsdokument →</a></p>`:""}
     ${e.baseW?`<button id="donebtn" style="display:block;width:100%;margin-top:1rem;padding:.7rem;border-radius:10px;border:1.5px solid ${DONE[id]?"var(--lov)":"var(--line2)"};background:${DONE[id]?"var(--lov)":"transparent"};color:${DONE[id]?"#fff":"var(--text)"};font-weight:600;font-size:.95rem;cursor:pointer;font-family:inherit">${DONE[id]?"✓ Klarmarkerad":"Markera klar"}</button>`:""}
   </div>`;
@@ -275,7 +293,8 @@ function cal(){
   const[from,to]=range();
   let s=new Date(from);s.setDate(s.getDate()-((s.getDay()+6)%7));
   const evs={},acts={};
-  EV.forEach(e=>{if(who!=="all"&&e.child!==who)return;if(!typeOn(e.type))return;(evs[e.date]=evs[e.date]||[]).push(e)});
+  const als={};
+  EV.forEach(e=>{if(who!=="all"&&e.child!==who)return;if(!typeOn(e.type))return;(evs[e.date]=evs[e.date]||[]).push(e);const a=alarmFor(e);if(a)(als[a.date]=als[a.date]||[]).push(e)});
   ACT.forEach(a=>{if(who!=="all"&&a[0]!==who)return;(acts[a[1]]=acts[a[1]]||[]).push(a)});
   const tk=iso(T);
   let h="";
@@ -290,12 +309,13 @@ function cal(){
         <div class="dn"><b>${d.getDate()}</b> ${MON[d.getMonth()]}</div>`;
       (evs[k]||[]).forEach(e=>{const dn=DONE[e.id];h+=`<button class="pill${dn?" done":""}" data-id="${e.id}" style="background:${dn?"var(--lov)":COL[e.type]}" title="${DN(e.child)} · ${e.subject}: ${e.title}">${e.subject!=="Skolan"?`<b style="font-weight:700">${DN(e.child)[0]} · ${e.subject}</b><br>`:""}${e.title}</button>`});
       (acts[k]||[]).forEach((a,j)=>{h+=`<button class="pill act" data-act="${k}:${j}">${a[2]} ${a[3]}</button>`});
+      (als[k]||[]).forEach(e=>{const ed=pd(e.date);h+=`<button class="pill alarm" data-id="${e.id}" style="border-color:${D[e.child].col}" title="Larm: ${DN(e.child)} · ${e.subject} ${LBL[e.type].toLowerCase()} ${ed.getDate()} ${MON[ed.getMonth()]}">🔔 ${DN(e.child)[0]} · ${e.subject} (${DAY[ed.getDay()].slice(0,3)})</button>`});
       h+=`</div>`;
     }
     h+=`</div>`;
     s.setDate(s.getDate()+7);
   }
-  return h+`<p class="hint">Klicka på en uppgift för att se material, källor och justera vikt och arbetsperiod. Streckade rutor är aktiviteter från kalendrarna Gustav och Syno. G eller S framför en uppgift visar vilket barn den gäller.</p>`;
+  return h+`<p class="hint">Klicka på en uppgift för att se material, källor och justera vikt och arbetsperiod. Streckade rutor är aktiviteter från kalendrarna Gustav och Syno. 🔔 visar larmkvällen innan en uppgift (regler under Inställningar). G eller S framför en uppgift visar vilket barn den gäller.</p>`;
 }
 
 function list(){
