@@ -17,7 +17,7 @@ const MATLIB={
 "G|2027-01-14|Kemi":{desc:"Repetition organisk kemi",nPages:41,nSheets:0,nFilms:6,nWeeks:6,links:[["Inläst läromedel, s. 101–141","https://inlasta.ilteducation.se/books/l5TBYPC9lTY82iI2QzlC0"],["Begreppa: Namnge organiska föreningar","https://app.begreppa.se/videos/kemi/organisk-kemi/hur-namnger-man-organiska-foreningar"],["Begreppa: Kolatomens kretslopp","https://app.begreppa.se/videos/kemi/kolatomens-kretslopp-och-vaxthuseffekten/kolatomens-kretslopp"],["Elevspel: Organisk kemi","https://www.elevspel.se/amnen/kemi/781-organisk-kemi.html"]]},
 "G|2026-10-16|Franska":{desc:"Kap 1a–1b: glosor, prepositioner, negationer, vägbeskrivning",nPages:27,nSheets:1,nFilms:5,nWeeks:8,links:[["Övningsmästaren: ljud och övningar","https://www.ovningsmastaren.se/book/c370dd99-6970-43f4-a16d-350e086b5edb"],["Sammanfattning kapitel 1b","https://docs.google.com/document/d/1AtEvCH7V721MS6SUsAZ_MNpd3M7OcMNqxkjwmBusz0A/edit"],["Fransk grammatik (presentation)","https://docs.google.com/presentation/d/1lejfW11sPqwFEOxG0bYZggI0eKCz3hHzHz4G909jaw8/edit"],["Alors grammaire: la négation (film)","https://urplay.se/program/217737-alors-grammaire-la-negation"],["Att beskriva vägen (film)","https://www.youtube.com/watch?v=OoFsERiWYsU"]]},
 "G|2026-11-27|Franska":{desc:"Kap 2a/2c: Je t'aime, vouloir/pouvoir, demonstrativa pronomen",nPages:12,nSheets:0,nFilms:0,nWeeks:6,links:[["Övningsmästaren: ljud och övningar","https://www.ovningsmastaren.se/book/c370dd99-6970-43f4-a16d-350e086b5edb"],["Fransk grammatik (presentation)","https://docs.google.com/presentation/d/1lejfW11sPqwFEOxG0bYZggI0eKCz3hHzHz4G909jaw8/edit"]]},
-"G|2026-09-10|Svenska":{desc:"Faktatext om en uppfinning, kopplad till upplysningen",nPages:0,nSheets:0,nFilms:3,nWeeks:3,links:[["Genomgång: Faktatext","https://docs.google.com/presentation/d/1IvKh-LEAQndGggNkMTDsUQ64taIkMrPwZAH59YwYxMo/edit"],["URplay: Fatta historia – Upplysningen","https://urplay.se/program/207592-fatta-historia-upplysningen"],["Texter litteraturhistoria åk 8 (PDF)","https://drive.google.com/file/d/11flgUqKfd-tW2owU_MvgxMbENGaDg6V4/view"]]},
+"G|2026-09-11|Svenska":{desc:"Faktatext om en uppfinning, kopplad till upplysningen",nPages:0,nSheets:0,nFilms:3,nWeeks:3,links:[["Genomgång: Faktatext","https://docs.google.com/presentation/d/1IvKh-LEAQndGggNkMTDsUQ64taIkMrPwZAH59YwYxMo/edit"],["URplay: Fatta historia – Upplysningen","https://urplay.se/program/207592-fatta-historia-upplysningen"],["Texter litteraturhistoria åk 8 (PDF)","https://drive.google.com/file/d/11flgUqKfd-tW2owU_MvgxMbENGaDg6V4/view"]]},
 "G|2026-09-29|Svenska":{desc:"Språkhistoria: fornnordiska, dialekter, lånord",nPages:0,nSheets:0,nFilms:0,nWeeks:3,links:[["Dialekter och språkhistoria","https://docs.google.com/document/d/1bIL9PHPIlWCjFuWDyGTQgMS15Jk1_LXrY4lnbNtmGSE/edit"]]},
 "G|2026-10-23|Svenska":{desc:"Presentera en novellhändelse i nyhetsform",nPages:0,nSheets:0,nFilms:0,nWeeks:3,links:[["Litteraturhistoria: Renässansen–Romantiken","https://docs.google.com/presentation/d/1jFZcR-GnBpxaRbYN6jGMOFWV5At5ousNl4xRJ4ZVsHc/edit"]]},
 "G|2026-09-08|Textilslöjd":{desc:"Batikfärgning och skriftlig materialredovisning",nPages:0,nSheets:0,nFilms:0,nWeeks:3,links:[["Uppgift: skriva om ett material","https://docs.google.com/document/d/10t6Ehe_uNvWkiGiKMh7UmgdvVPHceRC83YhnD3O9rM0/edit"],["Slöjdlexikon","https://slojdlexikon.nu/"]]},
@@ -71,13 +71,14 @@ ev:[
 ["2026-09-09","HKK","läxa","Plugga matlagningsmetoder inför läxförhör"],
 ["2026-09-11","Franska","läxa","Läxa: glosor och fraser kapitel 1a, sid 105"],
 ["2026-09-08","Textilslöjd","muntlig","Redovisning material"],
-["2026-09-10","Svenska","inlämning","Faktatext klar"],
+["2026-09-11","Svenska","inlämning","Faktatext klar (slutet av lektionen)"],
 ["2026-09-10","Kemi","läxa","Läsläxa: Läsbok BLÅ till s.120"],
 ["2026-09-11","Skolan","annat","Lexbyjoggen"],
 ["2026-09-11","Matematik","läxa","Läxa 2"],
 ["2026-09-14","Engelska","inlämning","Lämna in Dear Abbie, övning 38"],
 ["2026-09-17","Skolan","utvecklingssamtal","Utvecklingssamtal"],
 ["2026-09-17","Kemi","läxa","Läsläxa: Läsbok BLÅ till s.160"],
+["2026-09-17","Svenska","läxa","Hemarbete på utvecklingssamtalsdagen: lyssna på dialekter och jämför"],
 ["2026-09-18","Matematik","läxa","Läxa 3"],
 ["2026-09-21","Engelska","prov","Listening test – news"],
 ["2026-09-22","Skolan","annat","Orienteringsdag"],
@@ -127,12 +128,14 @@ ev:[
 ["2026-12-04","Engelska","prov","Listening test"],
 ["2026-12-04","Matematik","läxa","Läxa 10"],
 ["2026-12-07","Engelska","prov","Reading test: Robin Hood"],
+["2026-12-07","Teknik","annat","Betyg sätts i teknik"],
 ["2026-12-03","Engelska","inlämning","Final task del 2: inspelad review"],
 ["2026-12-11","Matematik","läxa","Läxa 11"],
 ["2026-12-18","Skolan","annat","Julavslutning"],
 ["2026-12-21","Skolan","lov","Jullov, skolstart fre 8 jan"],
 ["2027-01-12","Matematik","diagnos","Diagnos kapitel 3 och läxa 12"],
 ["2027-01-13","Skolan","studiedag","Studiedag"],
+["2027-01-18","Biologi","annat","Biologi: första provet v.3 (dag ej satt; kursen startar v.47, enligt Marcus Jansson)"],
 ["2027-01-25","Engelska","läxa","Frågor till Confessions of an Exercise Addict klara"],
 ["2027-01-14","Kemi","prov","Prov"],
 ["2027-01-18","Matematik","prov","Prov: kapitel 3, geometri","MA8"],
@@ -228,8 +231,6 @@ ev:[
 ["2027-05-14","Matematik","NP","Nationellt prov matematik, delprov 2"]]}};
 
 const ACT=[
-["Syno","2026-09-07","17:00","Planera skolarbete","17:00–18:00","https://www.google.com/calendar/event?eid=OWhzcDRsM21hanRrbzFtcmlrNDBhZzY4MTRfMjAyNjA5MDdUMTUwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
-["Gustav","2026-09-07","18:30","Orkester","18:30–20:30","https://www.google.com/calendar/event?eid=dDg3MGRpbjNkZ3U1OG40dnBvYTlrajM2N29fMjAyNjA5MDdUMTYzMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
 ["Gustav","2026-09-08","17:30","Musikproduktion","17:30–18:10","https://www.google.com/calendar/event?eid=YTk0b2FpNnI0M291ZHYxbnVrYjhpaHQwcTBfMjAyNjA5MDhUMTUzMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
 ["Syno","2026-09-08","18:00","Musikal","18:00–19:30","https://www.google.com/calendar/event?eid=ZzVoNDQwM3ZqNXJtNXFsZ2JubHAxM3Rqa29fMjAyNjA5MDhUMTYwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
 ["Gustav","2026-09-08","18:20","Tuba","18:20–19:00","https://www.google.com/calendar/event?eid=NHBxdTltM25nanRxaG9lZjJiZmVsdjMxZWdfMjAyNjA5MDhUMTYyMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
@@ -278,7 +279,9 @@ const ACT=[
 ["Gustav","2026-10-27","18:20","Tuba","18:20–19:00","https://www.google.com/calendar/event?eid=NHBxdTltM25nanRxaG9lZjJiZmVsdjMxZWdfMjAyNjEwMjdUMTcyMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
 ["Syno","2026-10-27","18:00","Musikal","18:00–19:30","https://www.google.com/calendar/event?eid=ZzVoNDQwM3ZqNXJtNXFsZ2JubHAxM3Rqa29fMjAyNjEwMjdUMTcwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
 ["Syno","2026-10-28","18:00","Teater","18:00–19:20","https://www.google.com/calendar/event?eid=ajhyYnVlYm1wa2I0bG1mM3BvMTJwdWlyZ2NfMjAyNjEwMjhUMTcwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
-["Gustav","2026-11-01","20:00","Väga Gustav","20:00–21:00","https://www.google.com/calendar/event?eid=N3R1ZXBoMWFrb2JnNm1lNnNpZGd0YnRpMThfMjAyNjExMDFUMTkwMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"]];
+["Gustav","2026-11-01","20:00","Väga Gustav","20:00–21:00","https://www.google.com/calendar/event?eid=N3R1ZXBoMWFrb2JnNm1lNnNpZGd0YnRpMThfMjAyNjExMDFUMTkwMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
+["Syno","2026-11-02","17:00","Planera skolarbete","17:00–18:00","https://www.google.com/calendar/event?eid=OWhzcDRsM21hanRrbzFtcmlrNDBhZzY4MTRfMjAyNjExMDJUMTYwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
+["Gustav","2026-11-02","18:30","Orkester","18:30–20:30","https://www.google.com/calendar/event?eid=dDg3MGRpbjNkZ3U1OG40dnBvYTlrajM2N29fMjAyNjExMDJUMTczMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"]];
 function pd(s){const[y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)}
 function td(){const d=new Date();d.setHours(0,0,0,0);return d}
 function iw(d){const t=new Date(d);t.setHours(0,0,0,0);t.setDate(t.getDate()+3-((t.getDay()+6)%7));const w1=new Date(t.getFullYear(),0,4);return 1+Math.round(((t-w1)/864e5-3+((w1.getDay()+6)%7))/7)}
