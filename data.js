@@ -47,11 +47,12 @@ const MATLIB={
 "S|2026-09-25|Idrott":{desc:"Anatomi och fysiologi: lektionsanteckningar + material i Classroom",nPages:0,nSheets:1,nFilms:0,nWeeks:5,links:[["Lektionsanteckningar","https://docs.google.com/document/d/1JKaLHEOKkdEyZaaK80J4Z-X2L8IBQ1d-WryJu-FJJOM/edit"],["Anatomi och fysiologi (Drive-mapp)","https://drive.google.com/drive/folders/14Vb04HaDEp7BDQCMnKF1w6G7rPwNZbdg"]]},
 "S|2026-11-04|Kemi":{desc:"Livscykelanalys: gammal NP-uppgift om skoltröjor",nPages:0,nSheets:1,nFilms:0,nWeeks:2,links:[["Uppgift livscykelanalys (NP vt15)","https://arkiv.edusci.umu.se/npno9/tidigare-prov/vt15/npno9-vt15-kemi-delprov-a2.pdf"],["Livscykelanalys genomgång","https://docs.google.com/presentation/d/1XwzvUcp1uhbZpspHEqJ4AjKgc1PjgVMbAhl_pi_4YHM/edit"]]},
 "S|2026-09-23|Biologi":{desc:"Genetik: DNA, mitos, meios, ärftlighet, korsningsschema",nPages:0,nSheets:2,nFilms:6,nWeeks:6,links:[["Instuderingsfrågor: cellen, DNA, gen, mitos","https://docs.google.com/document/d/1TVQMXsxtr0AIpSVJ53qUqPi-DLpr18LT_9ID7Fvwzwo/edit"],["Film: Vad är DNA och gener?","https://app.begreppa.se/videos/biologi/slaktskap-och-utveckling/vad-ar-dna-och-gener"],["Film: Ärftlighetslära","https://sliplay.se/gr/play/products/983274-arftlighetslara"],["Boken som ljudfil","https://sanomautbildning.se/Laromedel/Grundskolan-6-9/Biologi/Baslaromedel/Biologi-Direkt/Lyssna-mp3-filer/"]]},
-"S|2026-11-11|Biologi":{desc:"Evolution och släktskap; material publiceras löpande",nPages:0,nSheets:0,nFilms:0,nWeeks:6,links:[["Boken som ljudfil","https://sanomautbildning.se/Laromedel/Grundskolan-6-9/Biologi/Baslaromedel/Biologi-Direkt/Lyssna-mp3-filer/"]]}
+"S|2026-11-11|Biologi":{desc:"Evolution och släktskap; material publiceras löpande",nPages:0,nSheets:0,nFilms:0,nWeeks:6,links:[["Boken som ljudfil","https://sanomautbildning.se/Laromedel/Grundskolan-6-9/Biologi/Baslaromedel/Biologi-Direkt/Lyssna-mp3-filer/"]]},
+"G|2027-01-14|Biologi":{desc:"Människokroppen: skelett, muskler, organ, matspjälkning",nPages:0,nSheets:0,nFilms:0,nWeeks:9,links:[["Biologi 8C planering","https://docs.google.com/document/d/1bAlcgV4dUSjd_DeTFviDw-axBdkJaqR0prf0MxYqpsU/edit"]]}
 };
 
-const D={Gustav:{cls:"8C",col:"var(--gustav)",docs:{Matematik:"https://docs.google.com/document/d/1S2oke_K6A3JULxro1KLKJBUjo3ZqLlF3R_RsVj696Bg/edit",SO:"https://docs.google.com/document/d/1ZR_GFVId9s12Wrkds-LId7iXdUuIn9gwSt3dJ0K-J5M/edit",Engelska:"https://docs.google.com/document/d/1CwkwucTKNg_jNXUD-gHH6sRTFCKUOycbNdGIeU4HLRU/edit",Bild:"https://docs.google.com/document/d/1iHL1qdhnsThI2D3U0i80nnsS0ZyWoU_D_NHhssbuLEc/edit",Textilslöjd:"https://docs.google.com/document/d/1-IcY_XZLVBo-1j8bY1jHqmELPqcJn4OFaMY3XphKpQI/edit",Franska:"https://docs.google.com/document/d/1jUhKrVH058E4-5vC_K3sC1C7c7757Jw5cwMVCk7MChw/edit",Svenska:"https://docs.google.com/document/d/1v7NhlKreegYNiDNNtVHI5QuMXc6qubX3gq3PDCIuUYo/edit",Kemi:"https://docs.google.com/document/d/1RB8R01LtKFDN8RRO8ybqGvNPNhjqRjH1proUcBb3DwM/edit",Idrott:"https://docs.google.com/document/d/1Ynk317VzzWda6vBDx_jeAWsBaL6_6aQPoi7_Cslm7KM/edit",Fysik:"https://docs.google.com/document/d/182Wd4OTZ0__bQd841XBhX-HscIyqTdO7t11VAnvikuc/edit",Teknik:"https://docs.google.com/document/d/1zaLIPHgPapv4d-vu2OW36RrQtOlS098XIW5QVGTZoaY/edit",HKK:"https://docs.google.com/document/d/1DyAs79z6chyM4lH_v3YdbWN3fDprFtfC1Rep1NVuKb4/edit",SvE:"https://docs.google.com/document/d/14Ku5VFaE6qArJHCwaqV9-FwIcXcQyLYHM34Dgt4G4_4/edit"},
-teachers:{Matematik:"Marcus Jansson",SO:"Anders Lindberg",Engelska:"Maria Ödmar",Bild:"Anna Klevenås Kraft",Textilslöjd:"Anna Klevenås Kraft",Franska:"Cicci Armini",Svenska:"Therese Larsson",Kemi:"Viktor Axelsson",Idrott:"Björn Nilsson",Fysik:"Christina Thorén",Teknik:"Alexander Jonsson",HKK:"Emma J. Wedenmark",SvE:"Maria Ödmar"},
+const D={Gustav:{cls:"8C",col:"var(--gustav)",docs:{Matematik:"https://docs.google.com/document/d/1S2oke_K6A3JULxro1KLKJBUjo3ZqLlF3R_RsVj696Bg/edit",SO:"https://docs.google.com/document/d/1ZR_GFVId9s12Wrkds-LId7iXdUuIn9gwSt3dJ0K-J5M/edit",Engelska:"https://docs.google.com/document/d/1CwkwucTKNg_jNXUD-gHH6sRTFCKUOycbNdGIeU4HLRU/edit",Bild:"https://docs.google.com/document/d/1iHL1qdhnsThI2D3U0i80nnsS0ZyWoU_D_NHhssbuLEc/edit",Textilslöjd:"https://docs.google.com/document/d/1-IcY_XZLVBo-1j8bY1jHqmELPqcJn4OFaMY3XphKpQI/edit",Franska:"https://docs.google.com/document/d/1jUhKrVH058E4-5vC_K3sC1C7c7757Jw5cwMVCk7MChw/edit",Svenska:"https://docs.google.com/document/d/1v7NhlKreegYNiDNNtVHI5QuMXc6qubX3gq3PDCIuUYo/edit",Kemi:"https://docs.google.com/document/d/1RB8R01LtKFDN8RRO8ybqGvNPNhjqRjH1proUcBb3DwM/edit",Idrott:"https://docs.google.com/document/d/1Ynk317VzzWda6vBDx_jeAWsBaL6_6aQPoi7_Cslm7KM/edit",Fysik:"https://docs.google.com/document/d/182Wd4OTZ0__bQd841XBhX-HscIyqTdO7t11VAnvikuc/edit",Teknik:"https://docs.google.com/document/d/1zaLIPHgPapv4d-vu2OW36RrQtOlS098XIW5QVGTZoaY/edit",HKK:"https://docs.google.com/document/d/1DyAs79z6chyM4lH_v3YdbWN3fDprFtfC1Rep1NVuKb4/edit",Biologi:"https://docs.google.com/document/d/1bAlcgV4dUSjd_DeTFviDw-axBdkJaqR0prf0MxYqpsU/edit",SvE:"https://docs.google.com/document/d/14Ku5VFaE6qArJHCwaqV9-FwIcXcQyLYHM34Dgt4G4_4/edit"},
+teachers:{Matematik:"Marcus Jansson",SO:"Anders Lindberg",Engelska:"Maria Ödmar",Bild:"Anna Klevenås Kraft",Textilslöjd:"Anna Klevenås Kraft",Franska:"Cicci Armini",Svenska:"Therese Larsson",Kemi:"Viktor Axelsson",Idrott:"Björn Nilsson",Fysik:"Christina Thorén",Teknik:"Alexander Jonsson",HKK:"Emma J. Wedenmark",Biologi:"Marcus Jansson",SvE:"Maria Ödmar"},
 ev:[
 ["2026-08-27","Kemi","läxa","Läsläxa: Läsbok BLÅ till s.40"],
 ["2026-09-02","Fysik","inlämning","Laboration med rapport: disktrasans isoleringsförmåga"],
@@ -135,7 +136,7 @@ ev:[
 ["2026-12-21","Skolan","lov","Jullov, skolstart fre 8 jan"],
 ["2027-01-12","Matematik","diagnos","Diagnos kapitel 3 och läxa 12"],
 ["2027-01-13","Skolan","studiedag","Studiedag"],
-["2027-01-18","Biologi","annat","Biologi: första provet v.3 (dag ej satt; kursen startar v.47, enligt Marcus Jansson)"],
+["2027-01-14","Biologi","prov","Prov: Människokroppen"],
 ["2027-01-25","Engelska","läxa","Frågor till Confessions of an Exercise Addict klara"],
 ["2027-01-14","Kemi","prov","Prov"],
 ["2027-01-18","Matematik","prov","Prov: kapitel 3, geometri","MA8"],
@@ -289,7 +290,7 @@ function wkKey(d){const t=new Date(d);t.setDate(t.getDate()-((t.getDay()+6)%7));
 
 const SUBJECT_CANON=["Bild","Biologi","Engelska","Fysik","HKK","Idrott","Kemi","Matematik","Moderna språk","Musik","SO","Slöjd","Svenska","Teknik"];
 const MISSING={
- "Gustav":["Biologi","Musik"],
+ "Gustav":["Musik"],
  "Syno":["Fysik","Musik","Slöjd","Teknik"]
 };
 
