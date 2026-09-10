@@ -1,6 +1,8 @@
 let ADJ={};try{ADJ=JSON.parse(localStorage.getItem("skolAdj")||"{}")}catch(e){}
 let DONE={};try{DONE=JSON.parse(localStorage.getItem("skolDone")||"{}")}catch(e){}
 function saveDone(){try{localStorage.setItem("skolDone",JSON.stringify(DONE))}catch(e){}}
+let MANUAL=[];try{MANUAL=JSON.parse(localStorage.getItem("skolManual")||"[]")}catch(e){}
+function saveManual(){try{localStorage.setItem("skolManual",JSON.stringify(MANUAL))}catch(e){}}
 let OFF={};try{OFF=JSON.parse(localStorage.getItem("skolOff")||"{}")}catch(e){}
 function saveOff(){try{localStorage.setItem("skolOff",JSON.stringify(OFF))}catch(e){}}
 function subjOff(k,s){return Array.isArray(OFF[k])&&OFF[k].includes(s)}
@@ -19,7 +21,14 @@ function all(){const o=[];for(const k in D)D[k].ev.forEach((e,i)=>{
   const id=k[0]+"-"+e[0]+"-"+i, bw=W[e[2]]||0, a=ADJ[id]||{};
   o.push({id,child:k,date:e[0],subject:e[1],type:e[2],title:e[3],mat:e[4],
     baseW:bw, w:a.w!==undefined?a.w:bw, days:a.d!==undefined?a.d:baseDays(bw), adj:!!(a.w!==undefined||a.d!==undefined)});
-});o.sort((a,b)=>a.date.localeCompare(b.date));return o}
+});
+MANUAL.forEach((m,i)=>{
+  if(subjOff(m.child,m.subject))return;
+  const id="M-"+m.child[0]+"-"+m.date+"-"+i, bw=W[m.type]||0, a=ADJ[id]||{};
+  o.push({id,child:m.child,date:m.date,subject:m.subject,type:m.type,title:m.title||"",mat:"",
+    baseW:bw, w:a.w!==undefined?a.w:bw, days:a.d!==undefined?a.d:baseDays(bw), adj:!!(a.w!==undefined||a.d!==undefined), manual:true});
+});
+o.sort((a,b)=>a.date.localeCompare(b.date));return o}
 let EV=all(); const T=td();
 let span=2, who="all", selWeek=null, mode="cal", meas="effort", hideWknd=true;
 let hiddenTypes=new Set();
@@ -94,6 +103,20 @@ function renderSettings(){
       <span style="display:inline-block;transition:transform .15s;transform:rotate(${open_?90:0}deg)">›</span>${open_?"Dölj ämneslärare":"Visa alla ämneslärare"}</button>
     ${open_?`<div style="margin-top:.2rem">${rows}</div>`:""}</div>`;
   }).join("")+`
+  <h2>Manuella händelser</h2>
+  <div class="card" style="margin-bottom:.6rem">
+    <p class="hint" style="margin:0 0 .6rem">Lägg till prov eller uppgifter som inte finns i planeringsdokumenten.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:.4rem;align-items:end">
+      <label style="font-size:.78rem;color:var(--muted)">Barn<br><select id="man-child" style="font-size:.88rem;padding:.35rem .5rem;border-radius:8px;border:1px solid var(--line);background:var(--card2);color:var(--text);font-family:inherit">${["Gustav","Syno"].map(k=>`<option value="${k}">${DN(k)}</option>`).join("")}</select></label>
+      <label style="font-size:.78rem;color:var(--muted)">Ämne<br><input id="man-subj" list="man-subj-dl" placeholder="t.ex. Matematik" style="font-size:.88rem;padding:.35rem .5rem;border-radius:8px;border:1px solid var(--line);background:var(--card2);color:var(--text);width:9rem;font-family:inherit"></label>
+      <datalist id="man-subj-dl">${(typeof SUBJECT_CANON!=="undefined"?SUBJECT_CANON:[]).map(s=>`<option value="${s}">`).join("")}</datalist>
+      <label style="font-size:.78rem;color:var(--muted)">Typ<br><select id="man-type" style="font-size:.88rem;padding:.35rem .5rem;border-radius:8px;border:1px solid var(--line);background:var(--card2);color:var(--text);font-family:inherit">${["prov","muntlig","inlämning","läxa","diagnos","NP","annat"].map(t=>`<option value="${t}">${LBL[t]}</option>`).join("")}</select></label>
+      <label style="font-size:.78rem;color:var(--muted)">Datum<br><input id="man-date" type="date" style="font-size:.88rem;padding:.35rem .5rem;border-radius:8px;border:1px solid var(--line);background:var(--card2);color:var(--text);font-family:inherit"></label>
+      <label style="font-size:.78rem;color:var(--muted)">Beskrivning<br><input id="man-desc" placeholder="Valfritt" style="font-size:.88rem;padding:.35rem .5rem;border-radius:8px;border:1px solid var(--line);background:var(--card2);color:var(--text);width:10rem;font-family:inherit"></label>
+      <button id="man-add" style="padding:.4rem .9rem;border-radius:999px;border:1.5px solid var(--accent);background:color-mix(in srgb, var(--accent) 15%, transparent);color:var(--accent);font-weight:700;font-size:.88rem;cursor:pointer;font-family:inherit;white-space:nowrap">+ Lägg till</button>
+    </div>
+    ${MANUAL.length?`<div style="margin-top:.7rem">${MANUAL.map((m,i)=>{const col=D[m.child]?D[m.child].col:"var(--accent)";return `<div style="display:flex;align-items:center;gap:.5rem;padding:.35rem 0;border-top:1px solid var(--line);font-size:.88rem"><span class="dot" style="background:${col};width:.55rem;height:.55rem"></span><b style="font-weight:600">${m.date}</b> ${m.subject} · ${LBL[m.type]||m.type}${m.title?" — "+m.title:""}<button class="man-del" data-i="${i}" style="margin-left:auto;background:none;border:none;color:var(--faint);cursor:pointer;font-size:1rem;padding:0 .3rem" title="Ta bort">✕</button></div>`}).join("")}</div>`:``}
+  </div>
   <h2>Källor och synk</h2>
   <div class="card" style="margin-bottom:.6rem">${["Gustav","Syno"].map(k=>`<p style="margin:.2rem 0;font-size:.85rem"><span class="dot" style="background:${D[k].col}"></span><b>${DN(k)}</b> — ${docsN(k)} planeringsdokument från lärarna · Google-kalender kopplad</p>`).join("")}
    <p class="hint" style="margin-top:.5rem">Datat uppdateras automatiskt varje natt från lärarnas dokument och barnens kalendrar.</p></div>`;
@@ -108,6 +131,13 @@ function renderSettings(){
   const at=document.getElementById("altime");if(at)at.onchange=()=>{if(/^\d\d:\d\d$/.test(at.value)){ALARM.time=at.value;saveAlarm();render()}};
   const ar=document.getElementById("alreset");if(ar)ar.onclick=()=>{ALARM=JSON.parse(JSON.stringify(ALARM_DEF));saveAlarm();render()};
   const rb=document.getElementById("threset");if(rb)rb.onclick=()=>{TH.count=[2,4,7];TH.effort=[3,6,10];PREFS.th=TH;saveP();render()};
+  const manAdd=document.getElementById("man-add");if(manAdd)manAdd.onclick=()=>{
+    const ch=document.getElementById("man-child").value,su=document.getElementById("man-subj").value.trim(),
+      ty=document.getElementById("man-type").value,dt=document.getElementById("man-date").value,
+      desc=document.getElementById("man-desc").value.trim();
+    if(!su||!dt){alert("Fyll i ämne och datum.");return}
+    MANUAL.push({child:ch,subject:su,type:ty,date:dt,title:desc});saveManual();EV=all();render()};
+  el.querySelectorAll(".man-del").forEach(b=>b.onclick=()=>{MANUAL.splice(+b.dataset.i,1);saveManual();EV=all();render()});
 }
 function syncNames(){
   const sub=document.getElementById("sub");if(sub)sub.textContent=`${DN("Gustav")} · ${DN("Syno")} — läsåret 2026/27 · uppdrag pågår`;
