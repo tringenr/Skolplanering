@@ -108,7 +108,7 @@ ev:[
 ["2026-09-18","Svenska","prov","Lästest: Öva och pröva"],
 ["2026-10-01","Kemi","prov","Prov: organisk kemi"],
 ["2026-10-02","Engelska","inlämning","Dear Abbie – inlämning"],
-["2026-10-02","Franska","läxa","Läxa kap 1b: text, glosor och grammatik"],
+["2026-10-05","Franska","läxa","Läxa kap 1b: text, glosor, negationer och possessiva pronomen (s.20–22)"],
 ["2026-10-06","Matematik","prov","Prov: kapitel 1, tal","MA8"],
 ["2026-10-08","Kemi","läxa","Läsläxa till s.240"],
 ["2026-10-09","Matematik","läxa","Läxa 5"],
