@@ -206,7 +206,7 @@ ev:[
 ["2026-09-29","HKK","prov","Prov: privatekonomi och konsumtion"],
 ["2026-10-02","Franska","prov","Prov kapitel 4b och 4c"],
 ["2026-10-05","Skolan","praktik","Prao hela veckan"],
-["2026-10-12","Skolan","praktik","Tarragona, måndag och tisdag"],
+["2026-10-13","SO","inlämning","Analysuppgift i Trelson: samhällsekonomiska begrepp + ekonomiska kretsloppet (skrivs på lektionen)"],
 ["2026-10-16","Svenska/SVA","inlämning","Läsprojekt del 1, kapitel 1–4"],
 ["2026-10-16","Matematik","prov","Prov: kapitel 1, tal","MA9"],
 ["2026-11-02","Svenska/SVA","muntlig","Boksamtal: Tatueraren i Auschwitz (1/3 av klassen per tillfälle: 2, 3 eller 6 nov)"],
