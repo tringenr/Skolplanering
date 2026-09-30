@@ -257,7 +257,7 @@ const ACT=[
 ["Syno", "2026-09-29", "18:00", "Musikal", "18:00–19:30", "https://www.google.com/calendar/event?eid=ZzVoNDQwM3ZqNXJtNXFsZ2JubHAxM3Rqa29fMjAyNjA5MjlUMTYwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
 ["Gustav", "2026-09-29", "18:20", "Tuba", "18:20–19:00", "https://www.google.com/calendar/event?eid=NHBxdTltM25nanRxaG9lZjJiZmVsdjMxZWdfMjAyNjA5MjlUMTYyMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
 ["Syno", "2026-09-30", "18:00", "Teater", "18:00–19:20", "https://www.google.com/calendar/event?eid=ajhyYnVlYm1wa2I0bG1mM3BvMTJwdWlyZ2NfMjAyNjA5MzBUMTYwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
-["Gustav", "2026-10-01", "20:00", "Väga Gustav", "20:00–21:00", "https://www.google.com/calendar/event?eid=N3R1ZXBoMWFrb2JnNm1lNnNpZGd0YnRpMThfMjAyNjEwMDFUMTgwMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
+["Gustav", "2026-10-03", "20:00", "Väga Gustav", "20:00–21:00", "https://www.google.com/calendar/event?eid=N3R1ZXBoMWFrb2JnNm1lNnNpZGd0YnRpMThfMjAyNjEwMDFUMTgwMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn&ctz=Europe/Stockholm"],
 ["Syno", "2026-10-05", "17:00", "Planera skolarbete", "17:00–18:00", "https://www.google.com/calendar/event?eid=OWhzcDRsM21hanRrbzFtcmlrNDBhZzY4MTRfMjAyNjEwMDVUMTUwMDAwWiBvM3Y5YWprcmxuNXY5cnVlM3VjODZjdXM3Y0Bn"],
 ["Gustav", "2026-10-05", "18:30", "Orkester", "18:30–20:30", "https://www.google.com/calendar/event?eid=dDg3MGRpbjNkZ3U1OG40dnBvYTlrajM2N29fMjAyNjEwMDVUMTYzMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
 ["Gustav", "2026-10-06", "17:30", "Musikproduktion", "17:30–18:10", "https://www.google.com/calendar/event?eid=YTk0b2FpNnI0M291ZHYxbnVrYjhpaHQwcTBfMjAyNjEwMDZUMTUzMDAwWiBxdHFzdm05MGl1YWJyMDlmdnA0MXRodTQxY0Bn"],
